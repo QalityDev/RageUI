@@ -1,3 +1,5 @@
+Config = Config or { MenuColor = { 83, 18, 127 } }
+
 local L0_1, L1_1, L2_1, L3_1, L4_1, L5_1, L6_1, L7_1, L8_1, L9_1, L10_1, L11_1
 L0_1 = type
 L1_1 = pairs
