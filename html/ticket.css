@@ -1,0 +1,121 @@
+
+.ticket-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    z-index: 10;
+}
+.ticket-container .ticket-contain {
+    position: relative;
+    display: flex;
+    width: 60vh;
+    height: 20vh;
+    background: var(--black2-60);
+    border-radius: .5vh;
+    border: .1vh solid var(--white-50);
+}
+.ticket-container .ticket-contain .first-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5vh;
+    color: var(--white);
+    width: 10%;
+    height: 100%;
+    border-right: solid .1vh var(--white-50);
+}
+.ticket-container .ticket-contain .first-section p {
+    writing-mode: vertical-lr;
+    transform: rotate(180deg);
+    font-size: 1.8vh;
+    font-weight: 500;
+}
+.ticket-container .ticket-contain .first-section img {
+    height: 2.4vh;
+}
+.ticket-container .ticket-contain .second-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    color: var(--white);
+    width: 62%;
+    height: 100%;
+    border-right: solid .1vh var(--white-50);
+    padding: 2.5% 8%;
+    text-align: center;
+    font-size: 1.6vh;
+    font-weight: 500;
+}
+.ticket-container .ticket-contain .second-section .top {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5vh;
+    width: 100%;
+}
+.ticket-container .ticket-contain .second-section .top h2 {
+    font-size: 2.2vh;
+    font-weight: 700;
+}
+.ticket-container .ticket-contain .second-section .top .details {
+    display: flex;
+    flex-direction: column;
+    gap: .8vh;
+}
+.ticket-container .ticket-contain .second-section .top .details p {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--black2-60);
+    padding: 1.8% 0;
+    border-radius: .25vh;
+    border: .1vh solid var(--white-30);
+}
+.ticket-container .ticket-contain .third-section {
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 2vh;
+    width: 28%;
+    height: 100%;
+    color: var(--white);
+    padding-top: 2.5%;
+}
+.ticket-container .ticket-contain .third-section h2 {
+    font-size: 1.7vh;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.ticket-container .ticket-contain .third-section .scratch {
+    position: relative;
+    width: 10vh;
+    height: 10vh;
+}
+.ticket-container .ticket-contain .third-section .scratch .scratchText {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3%;
+    background: var(--black2-60);
+    border-radius: .35vh;
+    font-size: 1.6vh;
+    font-weight: 500;
+}
+.ticket-container .ticket-contain .third-section .scratch .scratchCanvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 2;
+    border-radius: .35vh;
+    border: .1vh solid var(--white-50);
+}

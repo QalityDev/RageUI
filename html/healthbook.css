@@ -1,0 +1,169 @@
+@font-face {
+    font-family: JustSignature;
+    src: url(assets/fonts/JustSignature.woff);
+}
+.carnet-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    padding: 2%;
+    z-index: 10;
+    position: absolute;
+}
+.carnet-container ::-webkit-scrollbar {
+    height: .8vh;
+    width: .5vh;
+}
+.carnet-container ::-webkit-scrollbar-thumb {
+    background-color: var(--global-main-color);
+    border-radius: 3px;
+}
+.carnet-container ::-webkit-scrollbar-track {
+    background-color: var(--black2-40);
+}
+.carnet-container .carnet-contain {
+    font-size: 1.6vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: var(--white);
+    background: var(--black2-40);
+    width: 66vh;
+    padding: 1.5%;
+    border-radius: .5vh;
+    gap: 2vh;
+}
+.carnet-container .carnet-contain .carnet-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.carnet-container .carnet-contain .carnet-header .carnet-title {
+    font-weight: 900;
+    font-size: 3.5vh;
+}
+.carnet-container .carnet-contain .carnet-header .carnet-desc {
+    font-weight: 400;
+    font-size: 1.3vh;
+    color: var(--white-70);
+}
+.carnet-container .carnet-contain .carnet-separator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--global-main-color);
+    width: 100%;
+    border-radius: .2vh;
+    font-weight: 500;
+    font-size: 1.2vh;
+    padding: .7% 0;
+}
+.carnet-container .carnet-contain .carnet-content {
+    display: flex;
+    width: 100%;
+    max-height: 45vh;
+    gap: 3%;
+    justify-content: center;
+    overflow: auto;
+}
+.carnet-container .carnet-contain .carnet-content .carnet-column {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 100%;
+    overflow-y: auto;
+    padding-right: 1%;
+}
+.carnet-container .carnet-contain .carnet-content .carnet-column .carnet-filter {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+}
+.carnet-container .carnet-contain .carnet-content .carnet-column .carnet-filter h1 {
+    font-weight: 500;
+    font-size: 1.4vh;
+    margin-bottom: 2%;
+}
+.carnet-container .carnet-contain .carnet-content .carnet-column .carnet-filter label {
+    color: var(--white-70);
+    background: var(--black2-40);
+    font-weight: 400;
+    font-size: 1.2vh;
+    padding: 3%;
+    border-radius: .2vh;
+    margin-bottom: 2%;
+}
+.carnet-container .carnet-contain .carnet-content .carnet-column .carnet-filter.small-filter label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12%;
+}
+.carnet-container .carnet-contain .carnet-left-footer {
+    display: flex;
+    align-items: center;
+    gap: 3%;
+}
+.carnet-container .carnet-contain .carnet-left-footer .carnet-left-footer-column {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 3%;
+}
+.carnet-container .carnet-contain .carnet-left-footer .carnet-left-footer-column li {
+    margin-bottom: 2%;
+    font-weight: 300;
+    font-size: .9vh;
+}
+.carnet-container .carnet-contain .carnet-left-footer .carnet-right-footer-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 35%;
+    height: 8.5vh;
+    background: var(--black2-40);
+    border-radius: .5vh;
+}
+.carnet-container .carnet-contain .carnet-left-footer .carnet-right-footer-column label {
+    font-family: JustSignature;
+    font-size: 3.5vh;
+}
+
+.carnet-edit {
+    width: 100%;
+    background: var(--black2-60, rgba(0,0,0,.35));
+    border: 1px solid var(--white-10, rgba(255,255,255,.1));
+    border-radius: .4vh;
+    color: var(--white, #fff);
+    font-family: inherit;
+    font-size: 1.3vh;
+    padding: .4vh .6vh;
+    resize: none;
+    outline: none;
+}
+textarea.carnet-edit {
+    min-height: 5vh;
+}
+.carnet-edit:focus {
+    border-color: var(--white-30, rgba(255,255,255,.3));
+}
+.carnet-save-bar {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1vh 0 0;
+}
+.carnet-save-btn {
+    background: var(--main, #3b82f6);
+    color: #fff;
+    border: none;
+    border-radius: .5vh;
+    padding: .6vh 2vh;
+    font-size: 1.4vh;
+    cursor: pointer;
+    font-family: inherit;
+}
+.carnet-save-btn:hover {
+    filter: brightness(1.15);
+}

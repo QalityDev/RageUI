@@ -1,0 +1,118 @@
+@keyframes bounceT {
+    0%  { opacity: 0; max-height: 0px; transform: translate(-125%); }
+    40% { opacity: 0; max-height: 500px; }
+    41% { transform: translate(-125%); opacity: 1; }
+    to  { max-height: 500px; }
+}
+@keyframes byebye {
+    to { transform: translate(-125%); }
+}
+
+.notif-container {
+    position: absolute;
+    left: var(--notif-position-x, 1.5vw);
+    bottom: var(--notif-position-y, 22vh);
+    transform: scale(var(--notif-scale, 1));
+    transform-origin: left bottom;
+    transition: all .5s;
+    font-family: var(--font-family), sans-serif;
+    color: #fff;
+    z-index: 10001;
+}
+body.pms-hud-editing .notif-container {
+    transition: none;
+}
+.notif-container .notif-list .notif {
+    animation: bounceT .75s ease-in-out;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+    text-align: left;
+    margin-bottom: 10px;
+    background-color: var(--black2-40);
+    margin-left: 1px;
+}
+.notif-container .notif-list .notif .header-container {
+    width: 100%;
+    height: 7vh;
+}
+.notif-container .notif-list .notif .header-container .header {
+    opacity: 50%;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px 5px 0 0;
+    background-color: var(--black2-40);
+}
+.notif-container .notif-list .notif .notif-bottom {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 1vh;
+}
+.notif-container .notif-list .notif .notif-bottom .notif-titles {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.2vh;
+}
+.notif-container .notif-list .notif .notif-bottom .notif-titles .icon-container {
+    height: 5.5vh;
+    width: 5.5vh;
+    margin-right: 1vh;
+}
+.notif-container .notif-list .notif .notif-bottom .notif-titles .icon-container .icon {
+    object-fit: contain;
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    background-color: var(--black2-40);
+}
+.notif-container .notif-list .notif .notif-bottom .notif-titles .info {
+    display: flex;
+    flex-direction: column;
+}
+.notif-container .notif-list .notif .notif-bottom .notif-titles .info .title {
+    font-size: 1.45vh;
+    font-weight: 700;
+}
+.notif-container .notif-list .notif .notif-bottom .notif-titles .info .subtitle {
+    font-size: 1.4vh;
+    color: #ffffff80;
+}
+.notif-container .notif-list .notif .notif-bottom .notif-content {
+    font-size: 1.3vh;
+}
+.notif-container .notif-list .notif .notif-bottom .notif-content img {
+    width: 4vh;
+    height: auto;
+}
+.notif-container .notif-list .notif .progress-back {
+    display: flex;
+    align-items: center;
+    background-color: var(--black2-40);
+    width: 100%;
+    height: .25vh;
+    border-radius: 0 0 5px 5px;
+}
+.notif-container .notif-list .notif .progress-back .progress-bar {
+    transition: all 1s linear;
+    background-color: var(--global-main-color);
+    height: 100%;
+    width: 0%;
+    border-radius: 5px;
+}
+.notif-container .notif-list .byebyenotif {
+    animation: byebye .5s ease-in-out forwards;
+}
+
+.gta-w, .gta-s { color: #fff; }
+.gta-u { color: #000; }
+.gta-r { color: #f33c3c; }
+.gta-g { color: #68b868; }
+.gta-b { color: #5db6e5; }
+.gta-y { color: #d9b549; }
+.gta-o { color: #d16f48; }
+.gta-p { color: #8466e2; }
+.gta-h { font-weight: 700; }

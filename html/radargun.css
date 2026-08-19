@@ -1,0 +1,664 @@
+@font-face {
+    font-family: "Digital";
+    src: url("media/digital.ttf");
+}
+
+.radargun-main {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    display: none;
+    pointer-events: none;
+    overflow: hidden;
+}
+.radargun-main.active { display: block; }
+
+.radargun-gun {
+    position: absolute;
+    height: 44vh;
+    width: 64.8vh;
+    right: -5%;
+    bottom: 0;
+    transform: translateY(100%);
+    transition: transform 0.5s;
+}
+.radargun-gun.open {
+    transform: translateY(0);
+}
+
+.radargun-gun-image {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+
+.radargun-speed {
+    position: absolute;
+    font-family: "Digital";
+    font-weight: bolder;
+    font-size: 2.5vh;
+    top: 49.5%;
+    left: 35.5%;
+    text-align: right;
+    color: #282828;
+}
+
+.radargun-range {
+    position: absolute;
+    font-family: "Digital";
+    font-weight: bolder;
+    font-size: 2.5vh;
+    top: 49.5%;
+    left: 58%;
+    text-align: right;
+    color: #282828;
+}
+
+@font-face {
+    font-family: "Segment7";
+    src: url("assets/radar/fonts/Segment7.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "GTALicensePlates";
+    src: url("assets/radar/fonts/GTALicensePlates.woff") format("woff");
+    font-weight: 700;
+}
+
+.vehicle-radar-main {
+    position: absolute;
+    inset: 0;
+    display: none;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 130;
+}
+
+.vehicle-radar-main.active {
+    display: block;
+}
+
+.vehicle-radar-main *,
+.vehicle-radar-main *::before,
+.vehicle-radar-main *::after {
+    box-sizing: border-box;
+}
+
+.vehicle-radar-main .dashboard {
+    position: fixed;
+    bottom: 2.2vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 74.66vh;
+    height: 24vh;
+    background: #0c0c0cf5;
+    border: 1px solid rgba(255, 255, 255, .08);
+    border-radius: 6px;
+    box-shadow: 0 8px 32px #0009;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    font-family: var(--font-family), sans-serif;
+    pointer-events: auto;
+}
+
+.vehicle-radar-main .body {
+    display: grid;
+    grid-template-columns: 16vh 1fr 11.02vh;
+    grid-template-rows: minmax(0, 1fr);
+    flex: 1;
+    min-height: 0;
+    font-size: .88vh;
+}
+
+.vehicle-radar-main .rightCol {
+    display: flex;
+    flex-direction: column;
+    border-left: 1px solid rgba(255, 255, 255, .08);
+}
+
+.vehicle-radar-main .topBar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 .71vh 0 1.06vh;
+    height: 2.84vh;
+    flex-shrink: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+    cursor: move;
+    touch-action: none;
+    user-select: none;
+}
+
+.vehicle-radar-main .clock {
+    font-size: 1.24vh;
+    font-weight: 700;
+    letter-spacing: .17vh;
+    color: var(--white-50);
+    text-transform: uppercase;
+    font-variant-numeric: tabular-nums;
+}
+
+.vehicle-radar-main .close-3 {
+    width: 2.4vh;
+    height: 2.4vh;
+    border-radius: 3px;
+    border: none;
+    background: none;
+    color: var(--white-30);
+    font-family: var(--font-family), sans-serif;
+    font-size: 1.24vh;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color .1s ease, background .1s ease;
+    outline: none;
+}
+
+.vehicle-radar-main .close-3:hover {
+    color: var(--red);
+    background: #ffffff08;
+}
+
+.vehicle-radar-main .sidebar {
+    border-right: 1px solid rgba(255, 255, 255, .08);
+    background: #0003;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+}
+
+.vehicle-radar-main .main {
+    display: flex;
+    flex-direction: column;
+    padding: 1.77vh;
+    min-width: 0;
+    min-height: 0;
+}
+
+.vehicle-radar-main .separator {
+    height: 1px;
+    background: rgba(255, 255, 255, .08);
+    margin: 1.06vh 0;
+    flex-shrink: 0;
+}
+
+.vehicle-radar-main .compass {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-height: 0;
+}
+
+.vehicle-radar-main .compassSvg {
+    width: auto;
+    height: 19.55vh;
+    max-width: 100%;
+    min-height: 0;
+    flex-shrink: 1;
+    padding: .71vh .88vh .35vh;
+    cursor: crosshair;
+    user-select: none;
+    touch-action: none;
+}
+
+.vehicle-radar-main .compassCone {
+    fill: #3974c847;
+    stroke: var(--blue);
+    stroke-width: 1.5;
+    pointer-events: none;
+    filter: drop-shadow(0 0 .53vh rgba(57, 116, 200, .35));
+    transition: fill .1s;
+}
+
+.vehicle-radar-main .compassRing {
+    fill: none;
+    stroke: var(--white-30);
+    stroke-width: 1;
+    stroke-dasharray: 3 5;
+    pointer-events: none;
+}
+
+.vehicle-radar-main .compassTick {
+    stroke: var(--white-50);
+    stroke-width: 1.5;
+    pointer-events: none;
+}
+
+.vehicle-radar-main .compassHistoryBtn {
+    margin-top: auto;
+    width: 100%;
+    height: 3.55vh;
+    flex-shrink: 0;
+    padding: 0 .88vh;
+    background: transparent;
+    border: none;
+    border-top: 1px solid var(--ctx-separator);
+    color: var(--white-30);
+    font-family: var(--font-family), sans-serif;
+    font-size: 1vh;
+    font-weight: 700;
+    letter-spacing: .26vh;
+    text-transform: uppercase;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .53vh;
+    transition: background .12s, color .12s;
+    outline: none;
+}
+
+.vehicle-radar-main .compassHistoryBtn:hover {
+    background: #ffffff08;
+    color: var(--white-70);
+}
+
+.vehicle-radar-main .compassHistoryBtn.active-2 {
+    color: var(--white);
+    background: var(--global-main-color-20);
+    border-left: 3px solid var(--global-main-color);
+}
+
+.vehicle-radar-main .compassHistoryCount {
+    font-size: 1vh;
+    background: #ffffff14;
+    color: var(--white-70);
+    border-radius: .88vh;
+    min-width: 1.77vh;
+    height: 1.51vh;
+    align-items: center;
+    justify-content: center;
+    padding: 0 .35vh;
+    letter-spacing: 0;
+}
+
+.vehicle-radar-main .compassHistoryBtn.active-2 .compassHistoryCount {
+    background: var(--global-main-color-40);
+    color: var(--white);
+}
+
+.vehicle-radar-main .radarSpeeds {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2.31vh;
+}
+
+.vehicle-radar-main .speedCol {
+    text-align: center;
+}
+
+.vehicle-radar-main .speedNum {
+    font-family: "Segment7", monospace;
+    font-size: 5vh;
+    line-height: 1;
+    letter-spacing: .17vh;
+    color: #ffffff0a;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: .53vh;
+    min-width: 11vh;
+}
+
+.vehicle-radar-main .speedNum.green-2 {
+    color: #0f8;
+    text-shadow: 0 0 1.51vh rgba(0, 255, 136, .4), 0 0 .53vh rgba(0, 255, 136, .6);
+}
+
+.vehicle-radar-main .speedNum.red-3 {
+    color: var(--red);
+    text-shadow: 0 0 1.51vh rgba(195, 49, 49, .5), 0 0 .53vh rgba(195, 49, 49, .7);
+}
+
+.vehicle-radar-main .speedSublabel {
+    font-size: .88vh;
+    font-weight: 700;
+    letter-spacing: .26vh;
+    color: var(--white-30);
+    margin-top: .53vh;
+    text-transform: uppercase;
+}
+
+.vehicle-radar-main .speedDivider {
+    width: 1px;
+    height: 5.33vh;
+    background: rgba(255, 255, 255, .08);
+}
+
+.vehicle-radar-main .plateSection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .88vh;
+    min-height: 5.33vh;
+}
+
+.vehicle-radar-main .plateVisual {
+    position: relative;
+    width: 16vh;
+    height: 8vh;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    border-radius: 4px;
+    border: 2px solid transparent;
+    transition: border-color .2s, box-shadow .2s;
+    flex-shrink: 0;
+}
+
+.vehicle-radar-main .plateVisual.locked-2 {
+    border-color: var(--red);
+    box-shadow: 0 0 1.51vh #c3313159;
+}
+
+.vehicle-radar-main .plateText {
+    position: absolute;
+    top: 58%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: "GTALicensePlates", monospace;
+    font-weight: 700;
+    font-size: 3.91vh;
+    line-height: 1;
+    white-space: nowrap;
+    color: #0000a3;
+}
+
+.vehicle-radar-main .plateText.yellow {
+    color: #ff0;
+}
+
+.vehicle-radar-main .lockBtn {
+    padding: .53vh 1.33vh;
+    border-radius: 4px;
+    font-family: var(--font-family), sans-serif;
+    font-size: 1.15vh;
+    font-weight: 700;
+    letter-spacing: .17vh;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    transition: border-color .15s, background-color .15s, color .15s;
+    border: 1px solid var(--green-dark);
+    background: #1e504226;
+    color: var(--green);
+    white-space: nowrap;
+}
+
+.vehicle-radar-main .lockBtn:hover {
+    border-color: var(--green2);
+    color: var(--green2);
+    background: #1e504240;
+}
+
+.vehicle-radar-main .lockBtn.active-2 {
+    border-color: var(--red);
+    background: var(--red-dark-50);
+    color: var(--red);
+}
+
+.vehicle-radar-main .lockBtn.active-2:hover {
+    border-color: var(--red);
+    color: var(--white);
+    background: var(--red-dark);
+}
+
+.vehicle-radar-main .plateEmpty {
+    font-size: 1.24vh;
+    letter-spacing: .17vh;
+    color: var(--white-30);
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.vehicle-radar-main .patrolSpeed {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    padding: 1.77vh .88vh;
+}
+
+.vehicle-radar-main .patrolLabel {
+    font-size: .88vh;
+    font-weight: 700;
+    letter-spacing: .26vh;
+    color: var(--white-30);
+    margin-bottom: .88vh;
+    text-transform: uppercase;
+}
+
+.vehicle-radar-main .patrolValue {
+    font-family: "Segment7", monospace;
+    font-size: 4.08vh;
+    line-height: 1;
+    letter-spacing: .17vh;
+    color: #ffffff0a;
+}
+
+.vehicle-radar-main .patrolValue.active-2 {
+    color: var(--blue);
+    text-shadow: 0 0 1.68vh rgba(57, 116, 200, .35), 0 0 .53vh rgba(57, 116, 200, .5);
+}
+
+.vehicle-radar-main .patrolUnit {
+    font-size: 1vh;
+    letter-spacing: .26vh;
+    color: var(--white-30);
+    margin-top: .53vh;
+}
+
+.vehicle-radar-main .vmaxBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .53vh;
+    padding: .88vh;
+    border-top: 1px solid rgba(255, 255, 255, .08);
+}
+
+.vehicle-radar-main .vmaxLabel {
+    font-size: .88vh;
+    font-weight: 700;
+    letter-spacing: .21vh;
+    color: var(--white-30);
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.vehicle-radar-main .vmaxInput {
+    width: 100%;
+    max-width: 5.33vh;
+    background: #00000059;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 3px;
+    color: var(--white-80);
+    font-family: "Segment7", monospace;
+    font-size: 1.77vh;
+    line-height: 1;
+    text-align: center;
+    outline: none;
+    padding: .26vh .35vh;
+    appearance: textfield;
+}
+
+.vehicle-radar-main .vmaxInput::-webkit-outer-spin-button,
+.vehicle-radar-main .vmaxInput::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.vehicle-radar-main .vmaxInput::placeholder {
+    color: var(--white-30);
+}
+
+.vehicle-radar-main .vmaxInput:focus {
+    border-color: var(--global-main-color);
+}
+
+.vehicle-radar-main .vmaxUnit {
+    font-size: 1vh;
+    letter-spacing: .26vh;
+    color: var(--white-30);
+    text-transform: uppercase;
+}
+
+.vehicle-radar-main .historyWrap {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.vehicle-radar-main .historyHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: .53vh;
+}
+
+.vehicle-radar-main .historyHeaderCount {
+    font-size: .88vh;
+    font-weight: 700;
+    letter-spacing: .17vh;
+    color: var(--white-50);
+    text-transform: uppercase;
+}
+
+.vehicle-radar-main .historyClear {
+    padding: .35vh 1vh;
+    border-radius: 3px;
+    border: 1px solid var(--red-dark);
+    background: var(--red-dark-50);
+    color: var(--red);
+    font-family: var(--font-family), sans-serif;
+    font-size: .8vh;
+    font-weight: 700;
+    letter-spacing: .17vh;
+    text-transform: uppercase;
+    cursor: pointer;
+    outline: none;
+    transition: color .15s, background .15s, border-color .15s;
+}
+
+.vehicle-radar-main .historyClear:hover {
+    border-color: var(--red);
+    color: var(--white);
+    background: var(--red-dark);
+}
+
+.vehicle-radar-main .historyEmpty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    font-size: 1.24vh;
+    letter-spacing: .17vh;
+    color: var(--white-30);
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+.vehicle-radar-main .historyList {
+    display: flex;
+    flex-direction: column;
+    gap: .35vh;
+    overflow-y: auto;
+    max-height: 24.88vh;
+    scrollbar-gutter: stable;
+}
+
+.vehicle-radar-main .historyList::-webkit-scrollbar {
+    width: .35vh;
+}
+
+.vehicle-radar-main .historyList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.vehicle-radar-main .historyList::-webkit-scrollbar-thumb {
+    background: var(--global-main-color);
+    border-radius: .17vh;
+}
+
+.vehicle-radar-main .historyEntry {
+    background: #00000040;
+    border: 1px solid rgba(255, 255, 255, .12);
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background .1s, border-color .15s;
+}
+
+.vehicle-radar-main .historyEntry:hover {
+    background: #ffffff08;
+}
+
+.vehicle-radar-main .historyEntry.open-2 {
+    border-color: var(--global-main-color-40);
+    background: var(--global-main-color-10);
+}
+
+.vehicle-radar-main .historyRow {
+    display: flex;
+    align-items: center;
+    gap: 1.15vh;
+    padding: .44vh 1.15vh;
+}
+
+.vehicle-radar-main .historyPlate {
+    font-family: "GTALicensePlates", "Courier New", monospace;
+    font-size: 1.77vh;
+    font-weight: 700;
+    color: var(--white-80);
+    letter-spacing: .17vh;
+    flex: 1;
+}
+
+.vehicle-radar-main .historyTime {
+    font-size: 1.15vh;
+    letter-spacing: .08vh;
+    color: var(--white-50);
+    font-variant-numeric: tabular-nums;
+}
+
+.vehicle-radar-main .historyChevron {
+    font-size: 1vh;
+    color: var(--white-50);
+}
+
+.vehicle-radar-main .historyDetail {
+    border-top: 1px solid rgba(255, 255, 255, .08);
+    padding: .53vh 1.33vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.15vh;
+}
+
+.vehicle-radar-main .detailLabel {
+    font-size: 1.15vh;
+    font-weight: 700;
+    letter-spacing: .17vh;
+    color: var(--white-50);
+    text-transform: uppercase;
+}
+
+.vehicle-radar-main .detailValue {
+    font-size: 1.15vh;
+    font-weight: 700;
+    letter-spacing: .17vh;
+    color: var(--red);
+    font-variant-numeric: tabular-nums;
+}
+
+@keyframes vehicle-radar-lock-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: .5; }
+}

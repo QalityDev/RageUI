@@ -1,0 +1,358 @@
+:root {
+    --pms-main-color: var(--global-main-color, #e23744);
+    --pms-main-color-20: var(--global-main-color-20, rgba(226, 55, 68, .2));
+    --pms-main-color-40: var(--global-main-color-40, rgba(226, 55, 68, .4));
+    --pms-main-color-50: var(--global-main-color-50, rgba(226, 55, 68, .5));
+}
+
+body.pms-hud-editing .hudContainer,
+body.pms-hud-editing #compass-nui,
+body.pms-hud-editing #compass-bar-nui,
+body.pms-hud-editing #streetname-nui,
+body.pms-hud-editing #streetbar-nui,
+body.pms-hud-editing .notif-container,
+body.pms-hud-editing #menu-root,
+body.pms-hud-editing #pm-minimap-root {
+    z-index: 10010 !important;
+    pointer-events: none !important;
+    transition: none !important;
+}
+
+body.pms-hud-editing .hud-hidden {
+    filter: grayscale(1) brightness(.7) !important;
+    opacity: .3 !important;
+}
+
+.pms-editor-root {
+    position: fixed;
+    inset: 0;
+    z-index: 10020;
+    pointer-events: none;
+    font-family: Poppins, 'Segoe UI', sans-serif;
+}
+
+.pms-editor-toolbar {
+    position: absolute;
+    bottom: 2.2vh;
+    left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: .75rem 1.5rem;
+    background: #00000073;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 14px;
+    pointer-events: auto;
+    z-index: 1;
+    transition: top .3s ease, bottom .3s ease;
+}
+
+.pms-editor-toolbar-title {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: .9rem;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+}
+
+.pms-editor-toolbar-title svg {
+    opacity: .8;
+}
+
+.pms-editor-toolbar-actions {
+    display: flex;
+    gap: .5rem;
+}
+
+.pms-reset-btn {
+    padding: .4rem 1rem;
+    background: #ffffff14;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 8px;
+    color: #ffffffb3;
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .18s ease;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.pms-reset-btn:hover {
+    background: #ffffff26;
+    color: #fff;
+}
+
+.pms-chat-done-btn {
+    padding: .4rem 1rem;
+    background: var(--pms-main-color);
+    border: 1px solid var(--pms-main-color-50);
+    border-radius: 8px;
+    color: #fff;
+    font-size: .82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .18s ease;
+    font-family: inherit;
+    white-space: nowrap;
+}
+
+.pms-chat-done-btn:hover {
+    filter: brightness(1.12);
+}
+
+.pms-editor-viewport {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    user-select: none;
+}
+
+.pms-editor-handle {
+    position: absolute;
+    border: 1px dashed var(--handle-color-20, rgba(255, 157, 0, .35));
+    background: transparent;
+    cursor: move;
+    box-sizing: border-box;
+    pointer-events: auto;
+    transition: border-color .15s ease;
+}
+
+.pms-editor-handle:hover {
+    border-color: var(--handle-color, #ff9d00);
+}
+
+.pms-editor-handle.is-hidden {
+    border-color: #ffffff1a;
+}
+
+.pms-editor-handle.is-hidden:hover {
+    border-color: #ffffff40;
+}
+
+.pms-editor-handle-label {
+    position: absolute;
+    top: -26px;
+    left: 2px;
+    font-size: .8rem;
+    font-weight: 800;
+    color: var(--handle-color, #ff9d00);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    pointer-events: none;
+    text-shadow: 0 1px 8px rgb(0, 0, 0), 0 0 4px rgba(0, 0, 0, .9), 0 0 12px rgba(0, 0, 0, .7);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pms-visibility-btn,
+.pms-boussole-mode-btn {
+    pointer-events: auto;
+    background: #00000080;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 4px;
+    color: var(--handle-color, #ff9d00);
+    cursor: pointer;
+    padding: 3px;
+    display: flex;
+    align-items: center;
+    opacity: .9;
+}
+
+.is-hidden .pms-visibility-btn,
+.is-hidden .pms-boussole-mode-btn {
+    color: #ffffff80;
+}
+
+.pms-boussole-mode-btn.active {
+    background: #000000b3;
+    border-color: var(--handle-color, #ff9d00);
+}
+
+.pms-boussole-mode-btn.active:hover {
+    opacity: 1;
+    background: #000000b3;
+}
+
+.pms-resize-handle {
+    position: absolute;
+    border-radius: 2px;
+    background: var(--handle-color, #ff9d00);
+    opacity: .7;
+    z-index: 1;
+    pointer-events: auto;
+}
+
+.pms-resize-handle:hover {
+    opacity: 1;
+}
+
+.pms-resize-handle.n,
+.pms-resize-handle.s {
+    left: 50%;
+    transform: translate(-50%);
+    width: 36px;
+    height: 4px;
+    cursor: ns-resize;
+}
+
+.pms-resize-handle.n { top: -2px; }
+.pms-resize-handle.s { bottom: -2px; }
+
+.pms-resize-handle.e,
+.pms-resize-handle.w {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 36px;
+    cursor: ew-resize;
+}
+
+.pms-resize-handle.e { right: -2px; }
+.pms-resize-handle.w { left: -2px; }
+
+.pms-resize-handle.ne,
+.pms-resize-handle.nw,
+.pms-resize-handle.se,
+.pms-resize-handle.sw {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    opacity: .9;
+}
+
+.pms-resize-handle.ne { top: -4px; right: -4px; cursor: nesw-resize; }
+.pms-resize-handle.nw { top: -4px; left: -4px; cursor: nwse-resize; }
+.pms-resize-handle.se { bottom: -4px; right: -4px; cursor: nwse-resize; }
+.pms-resize-handle.sw { bottom: -4px; left: -4px; cursor: nesw-resize; }
+
+.pms-map-control-handle {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, .9);
+    cursor: grab;
+    z-index: 10;
+    touch-action: none;
+    transform: translate(-50%, -50%);
+    pointer-events: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pms-map-control-handle:hover { transform: translate(-50%, -50%) scale(1.2); }
+.pms-map-control-handle:active { cursor: grabbing; }
+
+.pms-magnet-btn {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translate(-50%);
+    background: #0009;
+    border: 1px solid rgba(255, 255, 255, .2);
+    padding: 3px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-radius: 4px;
+    z-index: 2;
+    pointer-events: auto;
+    transition: background .15s ease;
+}
+
+.pms-magnet-btn:hover { background: #000c; }
+
+.pms-toggle {
+    padding: .4rem 1rem;
+    background: #ffffff1f;
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 8px;
+    color: #ffffffd9;
+    font-size: .88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all .18s ease;
+    min-width: 60px;
+    text-align: center;
+}
+
+.pms-toggle.on {
+    background: var(--pms-main-color-20);
+    border-color: var(--pms-main-color-50);
+    color: var(--pms-main-color);
+}
+
+.pms-toggle:hover:not(:disabled) { background: #fff3; color: #fff; }
+.pms-toggle:disabled { cursor: default; opacity: .5; }
+.pms-toggle svg { display: block; margin: 0 auto; }
+
+.pms-slider-wrap { display: flex; align-items: center; gap: .6rem; }
+
+.pms-slider {
+    width: 120px;
+    height: 4px;
+    appearance: none;
+    background: #ffffff40;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+}
+
+.pms-slider::-webkit-slider-thumb {
+    appearance: none;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--pms-main-color);
+    cursor: pointer;
+    transition: transform .15s ease;
+}
+
+.pms-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+.pms-slider-value {
+    font-size: .88rem;
+    font-weight: 600;
+    color: #ffffffd9;
+    min-width: 28px;
+    text-align: right;
+}
+
+.pms-chat-sample {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: .35vh;
+    padding: .6vh .8vh;
+    box-sizing: border-box;
+    overflow: hidden;
+    pointer-events: none;
+    background: rgba(0, 0, 0, .35);
+    border-radius: 6px;
+}
+
+.pms-chat-line {
+    font-size: 1.25vh;
+    line-height: 1.35;
+    color: #f2f2f2;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .9);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pms-chat-name {
+    font-weight: 800;
+    color: var(--handle-color, #5b9dff);
+    margin-right: .4ch;
+}
+

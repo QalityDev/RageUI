@@ -1,0 +1,114 @@
+.sidemenu.animations {
+    z-index: 60;
+}
+
+.animations-content .favorite {
+    cursor: pointer;
+    z-index: 2;
+    fill: rgba(255, 255, 255, .35);
+    transition: fill .15s ease;
+}
+
+.animations-content .container .item svg.favorite {
+    position: absolute;
+    top: .35vh;
+    left: .35vh;
+    right: auto;
+    width: 1.6vh;
+    height: 1.6vh;
+    padding: 0;
+}
+
+.animations-content .favorite:hover {
+    fill: rgba(255, 255, 255, .8);
+}
+
+.animations-content .favorite.active {
+    fill: #ffc107;
+}
+
+.animations-content .walkstyleActiveIndicator {
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    color: #4caf50;
+    z-index: 2;
+    font-size: 1.4vh;
+}
+
+.animations-content .walkstyleTypes {
+    position: absolute;
+    left: 36px;
+    top: 8px;
+    max-width: 80px;
+    width: max-content;
+    color: #888;
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 1.4;
+    z-index: 2;
+    background: transparent;
+    pointer-events: none;
+}
+
+.animations-content .walkstyleType {
+    margin: 2px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    padding: 0 4px;
+    font-size: .55em;
+    white-space: nowrap;
+}
+
+.animations-content .container .item.text-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: .5vh;
+}
+
+.animations-content .container .item.text-item .text-label {
+    font-size: 1.05vh;
+    line-height: 1.4vh;
+    color: var(--white);
+    word-break: break-word;
+}
+
+.animations-content .anim-empty {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-50);
+    font-size: 1.3vh;
+    padding: 3vh 0;
+}
+
+.animation-context-menu {
+    z-index: 65;
+}
+
+.animation-context-menu .walkstyle-context-title {
+    width: 100%;
+    text-align: center;
+    font-size: 1.12vh;
+    color: var(--white-50, rgba(255,255,255,.5));
+    margin-bottom: .2vh;
+}
+
+.animation-context-menu button.selected,
+.animation-context-menu .btn.selected {
+    background: #e0ffe0;
+    color: #388e3c;
+}
+
+.animation-context-menu .walkctx-check {
+    margin-right: .4em;
+}
+
+.animations .animations-search {
+    width: 100%;
+    box-sizing: border-box;
+    flex: none;
+}

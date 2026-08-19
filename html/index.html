@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Lib Menu</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="blips.css">
+    <link rel="stylesheet" href="deathscreen.css">
+    <link rel="stylesheet" href="prompt.css">
+    <link rel="stylesheet" href="colorpicker.css">
+    <link rel="stylesheet" href="warn_input.css">
+    <link rel="stylesheet" href="speedometer.css">
+    <link rel="stylesheet" href="hud.css">
+    <link rel="stylesheet" href="aero.css">
+    <link rel="stylesheet" href="plantsadmin.css?v=ava3">
+    <link rel="stylesheet" href="notifications.css">
+    <link rel="stylesheet" href="elevator.css">
+    <link rel="stylesheet" href="healthbook.css">
+    <link rel="stylesheet" href="time.css">
+    <link rel="stylesheet" href="ticket.css">
+    <link rel="stylesheet" href="vehicleshop.css">
+    <link rel="stylesheet" href="notepad.css">
+    <link rel="stylesheet" href="radargun.css">
+    <link rel="stylesheet" href="sdcard.css">
+    <link rel="stylesheet" href="shop.css">
+    <link rel="stylesheet" href="instructional.css">
+    <link rel="stylesheet" href="helpnotif.css">
+    <link rel="stylesheet" href="visitcard.css">
+    <link rel="stylesheet" href="compass.css">
+    <link rel="stylesheet" href="hud_editor.css">
+    <link rel="stylesheet" href="greenscreen.css">
+    <link rel="stylesheet" href="displayscreen.css">
+    <link rel="stylesheet" href="timerbars.css">
+    <link rel="stylesheet" href="pausemenu.css">
+    <link rel="stylesheet" href="logs.css">
+    <link rel="stylesheet" href="character_select.css">
+    <link rel="stylesheet" href="fishing.css">
+    <link rel="stylesheet" href="animations.css?v=fb3">
+    <link rel="stylesheet" href="lightshow.css">
+    <link rel="stylesheet" href="tattoo_creator.css?v=ava3">
+    <link rel="stylesheet" href="modding_shell.css?v=ava1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+</head>
+<body>
+    <div id="menu-root" class="Menu-container" style="display:none;"></div>
+    <div id="sdcard-container" class="sdcard" style="display:none;"></div>
+    <div id="shop-container" class="shop-container" style="display:none;"></div>
+    <div id="preview-container"></div>
+    <div class="notepad-main"></div>
+    <div class="radargun-main"></div>
+    <div class="vehicle-radar-main"></div>
+    <div id="watch-overlay">
+        <img id="watch-frame" alt="" />
+    </div>
+
+    <div id="golf-leaderboard" role="dialog" aria-modal="true" aria-labelledby="golf-leaderboard-title" hidden>
+        <div class="golf-leaderboard-card">
+            <div class="golf-leaderboard-header">
+                <span class="golf-leaderboard-icon" aria-hidden="true">⛳</span>
+                <span id="golf-leaderboard-title" class="golf-leaderboard-title">Golf Leaderboard</span>
+                <button id="golf-leaderboard-close" class="golf-leaderboard-close" type="button" title="Close" aria-label="Close">✕</button>
+            </div>
+            <div class="golf-leaderboard-table-header" aria-hidden="true">
+                <span class="golf-col-rank">#</span>
+                <span class="golf-col-name">Player</span>
+                <span class="golf-col-distance">Distance</span>
+                <span class="golf-col-date">Date</span>
+            </div>
+            <div id="golf-leaderboard-rows" class="golf-leaderboard-rows"></div>
+        </div>
+    </div>
+
+    <div id="deathscreen-container" class="deathscreen-container minimized" style="display: none">
+        <div class="main">
+            <div class="header">
+                <img src="head.svg" alt="" />
+                <h1>Vous êtes inconscient</h1>
+                <p>Patientez avant de pouvoir réapparaître</p>
+            </div>
+            <div class="timer">
+                <div class="ds-digit"><span style="--index:0">0</span><span style="--index:1">1</span><span style="--index:2">2</span><span style="--index:3">3</span><span style="--index:4">4</span><span style="--index:5">5</span><span style="--index:6">6</span><span style="--index:7">7</span><span style="--index:8">8</span><span style="--index:9">9</span></div>
+                <div class="ds-digit"><span style="--index:0">0</span><span style="--index:1">1</span><span style="--index:2">2</span><span style="--index:3">3</span><span style="--index:4">4</span><span style="--index:5">5</span><span style="--index:6">6</span><span style="--index:7">7</span><span style="--index:8">8</span><span style="--index:9">9</span></div>
+                <span class="ds-spacer">:</span>
+                <div class="ds-digit"><span style="--index:0">0</span><span style="--index:1">1</span><span style="--index:2">2</span><span style="--index:3">3</span><span style="--index:4">4</span><span style="--index:5">5</span><span style="--index:6">6</span><span style="--index:7">7</span><span style="--index:8">8</span><span style="--index:9">9</span></div>
+                <div class="ds-digit"><span style="--index:0">0</span><span style="--index:1">1</span><span style="--index:2">2</span><span style="--index:3">3</span><span style="--index:4">4</span><span style="--index:5">5</span><span style="--index:6">6</span><span style="--index:7">7</span><span style="--index:8">8</span><span style="--index:9">9</span></div>
+            </div>
+            <div class="calls">
+                <div id="ds-call-btn" class="call btn">
+                    <p class="keyboard">G</p>
+                    <p class="ds-details">Faire un appel EMS</p>
+                </div>
+                <div id="ds-details-btn" class="details2 btn">
+                    <p class="keyboard">Y</p>
+                    <p class="ds-details">Donner des détails aux EMS</p>
+                </div>
+            </div>
+            <div id="ds-space-btn" class="space btn">
+                <p class="keyboard">ESPACE</p>
+                <p class="ds-details">Pour agrandir</p>
+            </div>
+            <div id="ds-detailsmed" class="detailsmed">Un médecin est en route</div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="weapon_animation.js"></script>
+    <script src="blips.js"></script>
+    <script src="deathscreen.js"></script>
+    <script src="prompt.js"></script>
+    <script src="colorpicker.js"></script>
+    <script src="warn_input.js"></script>
+    <script src="speedometer.js"></script>
+    <script src="hud.js"></script>
+    <script src="aero.js"></script>
+    <script src="plantsadmin.js?v=ava3"></script>
+    <script src="notifications.js"></script>
+    <script src="elevator.js"></script>
+    <script src="healthbook.js"></script>
+    <script src="time.js"></script>
+    <script src="ticket.js"></script>
+    <script src="vehicleshop.js"></script>
+    <script src="notepad.js"></script>
+    <script src="radargun.js"></script>
+    <script src="idcard.js"></script>
+    <script src="sdcard.js"></script>
+    <script src="shop.js"></script>
+    <script src="ui-keys.js"></script>
+    <script src="instructional.js"></script>
+    <script src="helpnotif.js"></script>
+    <script src="timerbars.js"></script>
+    <script src="logs.js"></script>
+    <script src="fishing.js"></script>
+    <script src="lightshow.js"></script>
+    <script src="tattoo_creator.js?v=ava3"></script>
+    <script src="modding_shell.js?v=ava1"></script>
+
+    <div id="instructional-bar"></div>
+    <div id="help-notif"></div>
+
+    <div id="visitcard-container">
+        <div class="vc-card">
+            <div class="vc-bgImg vc-bgText"></div>
+            <h4 id="vc-name"></h4>
+            <h5 id="vc-description"></h5>
+            <p id="vc-number"></p>
+        </div>
+    </div>
+
+    <script src="vanilla-tilt.min.js"></script>
+    <script src="visitcard.js?v=fb1"></script>
+    <div id="compass-nui" class="container__Y78F" style="display:none"></div>
+    <div id="compass-bar-nui" class="compass-container" style="display:none">
+        <div class="compass-bar"></div>
+    </div>
+    <div id="streetname-nui" class="container__DZXM" style="display:none">
+        <div class="streetName__e2ZV"></div>
+        <div class="crossingName__dO5l"></div>
+    </div>
+    <div id="streetbar-nui" class="street-name-container" style="display:none">
+        <div class="street-name-text"></div>
+    </div>
+    <script src="compass.js"></script>
+    <script src="hud_editor.js"></script>
+    <script src="greenscreen.js"></script>
+    <script src="displayscreen.js"></script>
+
+    <div id="pausemenu-root"></div>
+    <div id="character-select-root"></div>
+    <div id="pm-minimap-root" class="pm-minimap" style="display:none">
+        <div id="pm-map-canvas" class="pm-map-canvas"></div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+    <script src="pausemenu.js"></script>
+    <script src="character_select.js"></script>
+    <script src="animations.js?v=fb3"></script>
+    <iframe id="pool-sound-iframe" src="pool/sound.html" style="display:none;width:0;height:0;border:0"></iframe>
+    <script>
+        (function () {
+            var poolSoundIframe = document.getElementById('pool-sound-iframe'); 
+            window.addEventListener('message', function (event) {
+                if (!event.data || !event.data.transactionType) return;
+                var t = event.data.transactionType;
+                if (t === 'playSound' || t === 'setOrientation') {
+                    if (poolSoundIframe && poolSoundIframe.contentWindow) {
+                        poolSoundIframe.contentWindow.postMessage(event.data, '*');
+                    }
+                }
+            });
+        })();
+    </script>
+</body>
+</html>

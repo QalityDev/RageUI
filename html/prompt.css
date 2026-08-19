@@ -1,0 +1,155 @@
+.prompt {
+    height: 100vh !important;
+    width: 100vw !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    font-family: var(--font-family);
+    font-style: normal;
+    z-index: 2147483000 !important; 
+    isolation: isolate;
+}
+
+.input-container,
+.warn {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    z-index: 2147483000 !important;
+    isolation: isolate;
+}
+.prompt .prompt-window {
+    min-width: 302px;
+    min-height: 182px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: #fff;
+    background: var(--black2-40);
+}
+.prompt .prompt-window .prompt-header {
+    min-height: 125px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.prompt .prompt-window .prompt-header .title {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 33px;
+}
+.prompt .prompt-window .prompt-header .description {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 10px;
+}
+.prompt .prompt-window .prompt-data-component {
+    margin: 5px 0;
+}
+.prompt .prompt-window .prompt-data,
+.prompt .prompt-window .prompt-data-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+.prompt .prompt-window .prompt-data .slider,
+.prompt .prompt-window .prompt-data-component .slider {
+    margin: 0;
+}
+.prompt .prompt-window .prompt-data .select-menu,
+.prompt .prompt-window .prompt-data-component .select-menu {
+    width: 75%;
+}
+.prompt .prompt-window .prompt-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin: 0 13.47px 24px;
+    gap: 13.47px;
+}
+.prompt .prompt-window .prompt-buttons .prompt-button {
+    color: #fff;
+    min-width: 115px;
+    padding: 0 15px;
+    height: 35px;
+    border-radius: 2px;
+    border: none;
+    text-align: center;
+    font-family: var(--font-family);
+    font-style: normal;
+    font-weight: 500;
+    font-size: 11.6711px;
+    line-height: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .2s;
+    cursor: default;
+    opacity: .4;
+    pointer-events: none;
+}
+.prompt .prompt-window .prompt-buttons .prompt-button.active {
+    cursor: pointer;
+    opacity: 1;
+    pointer-events: auto;
+}
+.prompt .prompt-window .prompt-buttons .prompt-button:hover {
+    filter: brightness(.8);
+    transition: all .2s;
+}
+.prompt .prompt-window .prompt-buttons .prompt-button.red {
+    background-color: var(--red-40);
+    border: 2px solid var(--red);
+}
+.prompt .prompt-window .prompt-buttons .prompt-button.green {
+    background-color: var(--green-40);
+    border: 2px solid var(--green);
+}
+.prompt .prompt-window .prompt-buttons .prompt-button.orange {
+    background-color: rgba(255, 166, 0, 0.4);
+    border: 2px solid orange;
+}
+.prompt .prompt-window .prompt-buttons .prompt-button.grey {
+    background-color: rgba(128, 128, 128, 0.4);
+    border: 2px solid gray;
+}
+.prompt .prompt-window .prompt-buttons .prompt-button.black {
+    background-color: var(--black2-40);
+    border: 2px solid var(--black2-60);
+}
+.prompt .prompt-window .prompt-buttons .prompt-button.blue {
+    background-color: var(--blue-40);
+    border: 2px solid var(--blue);
+}
+.prompt .prompt-window .prompt-buttons .prompt-button.purple {
+    background-color: var(--global-main-color-40);
+    border: 2px solid var(--global-main-color);
+}
+.prompt .prompt-window .prompt-buttons .prompt-button svg {
+    margin-right: .5em;
+    width: 15px;
+    height: 15px;
+}
+.prompt .prompt-window .prompt-buttons .prompt-button svg .svg-check {
+    margin-right: .4em;
+    width: 15px;
+    height: 15px;
+}
+.prompt .prompt-window .prompt-buttons .prompt-button svg .svg-cross {
+    width: 10px;
+    height: 10px;
+}

@@ -2,14 +2,14 @@ fx_version 'cerulean'
 game 'gta5'
 
 name 'RageUI Standalone'
-author 'Grande France'
-description 'RageUI Menu Framework Standalone pour FiveM (ESX / OX / Standalone)'
+author 'Grande France / Mihara'
+description 'RageUI Framework Officiel Flashback Mihara (ESX / OX Compatible)'
 version '1.0.0'
 
-ui_page 'web/index.html'
+ui_page 'html/index.html'
 
 client_scripts {
-    'client/rageui.lua',
+    'client/menu.lua',
     'client/example.lua'
 }
 
@@ -18,11 +18,10 @@ server_scripts {
 }
 
 files {
-    'web/index.html',
-    'web/style.css',
-    'web/script.js'
-}
-
-exports {
-    'GetRageUI'
+    'html/index.html',
+    'html/style.css',
+    'html/main.css',
+    'html/script.js',
+    'html/lock.svg',
+    'html/head.svg'
 }

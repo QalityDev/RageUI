@@ -1,0 +1,168 @@
+.container__Y78F {
+    position: fixed;
+    top: var(--boussole-position-y, 89.8vh);
+    left: var(--boussole-position-x, 16vw);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: calc(7vh * var(--boussole-scale, 1));
+    height: calc(7vh * var(--boussole-scale, 1));
+    border-radius: calc(.5vh * var(--boussole-scale, 1));
+    overflow: hidden;
+    transition: opacity .35s ease;
+    user-select: none;
+    pointer-events: none;
+    z-index: 500;
+}
+
+body.pms-hud-editing .container__Y78F,
+body.pms-hud-editing__Ku8B .container__Y78F {
+    transition: none;
+}
+
+.selectedZoneId__FFEd {
+    width: calc(6vh * var(--boussole-scale, 1));
+    height: calc(6vh * var(--boussole-scale, 1));
+    filter: drop-shadow(0 0 .2vh rgba(0, 0, 0, .8)) drop-shadow(0 .1vh .15vh rgba(0, 0, 0, .6));
+}
+
+.cardinal__CL3Z {
+    font-size: 7px;
+    font-weight: 800;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.letters__hU6U,
+.needle__W2Zc {
+    transform-origin: 22px 22px;
+    transition: transform .05s cubic-bezier(.25, .46, .45, .94);
+    transform-box: view-box;
+}
+
+.compass-container {
+    position: fixed;
+    top: calc(var(--compass-position-y, 2vh));
+    left: calc(50% + var(--compass-position-x, 0%));
+    transform: translate(-50%);
+    pointer-events: none;
+    transition: top .3s ease;
+    z-index: 500;
+}
+
+body.pms-hud-editing .compass-container {
+    transition: none;
+}
+
+.compass-bar {
+    position: relative;
+    height: calc(4vh * var(--compass-scale, 1));
+    width: calc(40vw * var(--compass-scale, 1));
+}
+
+.compass-tick {
+    position: absolute;
+    transform: translate(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.compass-tick-line {
+    width: 1px;
+    height: calc(.3vh * var(--compass-scale, 1));
+    background-color: #fffc;
+    box-shadow: 0 0 2px #000c;
+}
+
+.compass-tick-line-cardinal {
+    height: calc(1.2vh * var(--compass-scale, 1));
+}
+
+.compass-tick-line-intercardinal {
+    height: calc(.6vh * var(--compass-scale, 1));
+}
+
+.compass-label {
+    margin-top: calc(.5vh * var(--compass-scale, 1));
+    color: #fff;
+    text-shadow: 0 0 2px rgba(0, 0, 0, .8), 1px 1px 2px rgba(0, 0, 0, .8), -1px -1px 2px rgba(0, 0, 0, .8);
+    text-align: center;
+    white-space: nowrap;
+}
+
+.compass-label-cardinal {
+    font-size: calc(10px * var(--compass-scale, 1));
+}
+
+.compass-label-intercardinal {
+    font-size: calc(8px * var(--compass-scale, 1));
+}
+
+.container__DZXM {
+    position: fixed;
+    top: var(--boussole-street-position-y, 89.8vh);
+    left: var(--boussole-street-position-x, 23vw);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    height: calc(7vh * var(--boussole-street-scale, 1));
+    gap: calc(.3vh * var(--boussole-street-scale, 1));
+    padding: 0 calc(1vh * var(--boussole-street-scale, 1));
+    transition: opacity .35s ease;
+    user-select: none;
+    pointer-events: none;
+    z-index: 500;
+}
+
+body.pms-hud-editing .container__DZXM,
+body.pms-hud-editing__2v5n .container__DZXM {
+    transition: none;
+}
+
+.streetName__e2ZV {
+    font-size: calc(2.2vh * var(--boussole-street-scale, 1));
+    font-weight: 600;
+    color: #fffffff2;
+    white-space: nowrap;
+    overflow: hidden;
+    letter-spacing: .01vh;
+    line-height: 1.2;
+    text-shadow: 0 0 .2vh rgba(0, 0, 0, .8), .1vh .1vh .2vh rgba(0, 0, 0, .8), -.1vh -.1vh .2vh rgba(0, 0, 0, .8);
+    transition: opacity .2s ease;
+    font-family: Inter, system-ui, 'Segoe UI', Arial, sans-serif;
+}
+
+.crossingName__dO5l {
+    font-size: calc(1.3vh * var(--boussole-street-scale, 1));
+    font-weight: 400;
+    color: #fff6;
+    white-space: nowrap;
+    overflow: hidden;
+    line-height: 1.2;
+    text-shadow: 0 0 .2vh rgba(0, 0, 0, .8), .1vh .1vh .2vh rgba(0, 0, 0, .8);
+    transition: opacity .2s ease;
+    font-family: Inter, system-ui, 'Segoe UI', Arial, sans-serif;
+}
+
+.fading__I6pH {
+    opacity: 0;
+}
+
+.street-name-container {
+    position: fixed;
+    top: calc(.5vh + var(--street-position-y, 0%));
+    left: calc(50% + var(--street-position-x, 0%));
+    transform: translate(-50%);
+    pointer-events: none;
+    z-index: 500;
+}
+
+.street-name-text {
+    font-size: calc(1.5vh * var(--street-scale, 1));
+    color: #fff;
+    text-shadow: 0 0 2px rgba(0, 0, 0, .8), 1px 1px 2px rgba(0, 0, 0, .8), -1px -1px 2px rgba(0, 0, 0, .8);
+    text-align: center;
+    white-space: nowrap;
+    text-transform: uppercase;
+}

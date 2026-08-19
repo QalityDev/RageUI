@@ -1,0 +1,818 @@
+@import"https://fonts.googleapis.com/css?family=Poppins:200,400,500,600,700";
+@import"https://fonts.googleapis.com/css2?family=Open+Sans&display=swap";
+
+:root {
+    --black: rgba(0, 0, 0, 1);
+    --black-40: rgba(0, 0, 0, .4);
+    --black-60: rgba(0, 0, 0, .6);
+    --black2-10: rgba(2, 2, 2, .1);
+    --black2-20: rgba(2, 2, 2, .2);
+    --black2-30: rgba(2, 2, 2, .3);
+    --black2-40: rgba(2, 2, 2, .4);
+    --black2-50: rgba(2, 2, 2, .5);
+    --black2-60: rgba(2, 2, 2, .6);
+    --black2-70: rgba(2, 2, 2, .7);
+    --black2-80: rgba(2, 2, 2, .8);
+    --black2-90: rgba(2, 2, 2, .9);
+    --black14-85: rgba(14, 14, 14, .85);
+    --noir-85: rgba(20, 20, 20, .851);
+    --grey: rgb(127, 127, 127);
+    --grey-dark-50: rgba(127, 127, 127, .5);
+    --global-main-color-dark-50: rgba(32, 4, 51, .5);
+    --global-main-color: rgba(83, 18, 127, 1);
+    --global-main-color-10: rgba(83, 18, 127, .1);
+    --global-main-color-20: rgba(83, 18, 127, .2);
+    --global-main-color-30: rgba(83, 18, 127, .3);
+    --global-main-color-40: rgba(83, 18, 127, .4);
+    --global-main-color-50: rgba(83, 18, 127, .5);
+    --global-main-color-60: rgba(83, 18, 127, .6);
+    --global-main-color-70: rgba(83, 18, 127, .7);
+    --global-main-color-80: rgba(83, 18, 127, .8);
+    --global-main-color-90: rgba(83, 18, 127, .9);
+    --orange: #c96e06;
+    --orange-dark: #a2682a;
+    --orange-dark-50: rgba(194, 110, 6, .5);
+    --light-orange: #b27935;
+    --green: #358e75;
+    --green-dark: #1e5042;
+    --green-dark-50: rgba(30, 80, 66, .5);
+    --green2: #2bad6e;
+    --green2-40: #358e7571;
+    --green-40: rgba(24, 121, 74, 0.4);
+    --red: #c33131;
+    --red-dark: #722020;
+    --red-dark-50: rgba(114, 32, 32, .5);
+    --red-40: rgba(195, 49, 49, .4);
+    --blue: #3974c8;
+    --blue-40: #3975c83f;
+    --blue-dark-50: rgba(57, 116, 200, .5);
+    --dark-blue: rgba(61, 112, 184, .6);
+    --dark-blue2: rgba(12, 56, 119, .6);
+    --white: rgba(255, 255, 255, 1);
+    --white-90: rgba(255, 255, 255, .9);
+    --white-80: rgba(255, 255, 255, .8);
+    --white-70: rgba(255, 255, 255, .7);
+    --white-50: rgba(255, 255, 255, .5);
+    --white-30: rgba(255, 255, 255, .3);
+    --degrade-violet: linear-gradient(360deg, rgba(83, 18, 127, .15) 0%, rgba(2, 2, 2, 0) 100%, rgba(2, 2, 2, 0) 100%);
+    --degrade-violet2: linear-gradient(360deg, rgba(127, 18, 18, .15) 0%, rgba(2, 2, 2, 0) 100%, rgba(2, 2, 2, 0) 100%);
+    --degrade-violet-housebuilding: linear-gradient(90deg, rgba(83, 18, 127, .36) 0%, rgba(2, 2, 2, .36) 0%, rgba(83, 18, 127, .31) 100%);
+    --degrade-rouge: linear-gradient(to right, rgba(2, 2, 2, .4), rgba(171, 27, 27, .31));
+    --degrade-bleu: linear-gradient(to right, rgba(2, 2, 2, .4) 0%, rgba(36, 48, 62, .31) 100%);
+    --degrade-orange: linear-gradient(to right, rgba(2, 2, 2, .36) 0%, rgba(171, 96, 27, .31) 100%);
+    --degrade-vert: linear-gradient(to right, rgba(2, 2, 2, .4) 0%, rgba(26, 102, 65, 031) 100%);
+    --degrade-brown: linear-gradient(to right, rgba(2, 2, 2, .4) 0%, rgba(80, 49, 21, .31) 100%);
+    --degrade-cyan: linear-gradient(to right, rgba(2, 2, 2, .4) 0%, rgba(0, 255, 255, .31) 100%);
+    --degrade-gray: linear-gradient(to right, rgba(2, 2, 2, .4) 0%, rgba(128, 128, 128, .31) 100%);
+    --degrade-pink: linear-gradient(to right, rgba(2, 2, 2, .4) 0%, rgba(255, 192, 203, .31) 100%);
+    --degrade-purple: linear-gradient(to right, rgba(2, 2, 2, .4) 0%, rgba(128, 0, 128, .31) 100%);
+    --degrade-white: linear-gradient(to right, rgba(2, 2, 2, .4) 0%, rgba(255, 255, 255, .31) 100%);
+    --degrade-yellow: linear-gradient(to right, rgba(2, 2, 2, .4) 0%, rgba(255, 193, 7, .31) 100%);
+    --font-family: "Poppins";
+    --font-family-bold: "Poppins-Bold";
+    --font-family-medium: "Poppins-Medium";
+    --font-family-regular: "Poppins-Regular"
+}
+
+html,
+body,
+.root,
+.App {
+    margin: 0;
+    height: 100%;
+    width: 100%
+}
+
+body *,
+:after,
+:before {
+    -webkit-user-drag: none;
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-family), sans-serif;
+    box-sizing: border-box
+}
+
+.sidebar-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    width: 6%;
+    background: var(--black2-50);
+    border-radius: 1vh 0 0 1vh;
+    color: var(--white);
+    padding: 3% 1.5%;
+    font-size: 1.6vh;
+    transition: all .5s
+}
+
+.sidebar-container .sidebar-menu-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .5vh;
+    gap: 1vw
+}
+
+.sidebar-container .sidebar-menu-top .sidebar-logo {
+    display: flex;
+    align-items: center;
+    height: 5vh;
+    width: 2vw
+}
+
+.sidebar-container .sidebar-menu-top .sidebar-logo .fb-icon {
+    width: 2.5vw;
+    height: 100%
+}
+
+.sidebar-container .sidebar-menu-top .sidebar-logo label {
+    font-size: 2.2vh;
+    font-weight: 600
+}
+
+.sidebar-container .sidebar-menu-top ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7.5%;
+    height: 5vh;
+    width: 5vh;
+    padding: 10% 20%;
+    border-radius: .7vh;
+    font-size: 1.4vh;
+    cursor: pointer;
+    margin-bottom: .5vh;
+    transition: background .3s ease
+}
+
+.sidebar-container .sidebar-menu-top ul li:hover,
+.sidebar-container .sidebar-menu-top ul li.selected {
+    background: var(--black2-40)
+}
+
+.sidebar-container .sidebar-menu-top ul li .sidebar-menu-icon {
+    width: 2.5vh;
+    height: 2.5vh
+}
+
+.sidebar-container .sidebar-menu-top ul li .sidebar-menu-icon img,
+.sidebar-container .sidebar-menu-top ul li .sidebar-menu-icon svg {
+    width: 100%;
+    height: 100%
+}
+
+.sidebar-container .sidebar-menu-top ul li label {
+    cursor: pointer
+}
+
+.sidebar-container .sidebar-menu-bottom ul li {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7.5%;
+    height: 5vh;
+    width: 5vh;
+    padding: 10% 20%;
+    border-radius: .7vh;
+    font-size: 1.4vh;
+    cursor: pointer;
+    transition: background .3s ease
+}
+
+.sidebar-container .sidebar-menu-bottom ul li svg {
+    width: 2.5vh;
+    height: 2.5vh
+}
+
+.sidebar-container .sidebar-menu-bottom ul li:hover {
+    background: var(--red)
+}
+
+.sidebar-container .sidebar-menu-bottom ul li label {
+    cursor: pointer
+}
+
+.sidebar-container.expanded {
+    align-items: normal;
+    width: 28%;
+    width: 20%
+}
+
+.sidebar-container.expanded .sidebar-menu-top {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 0vh
+}
+
+.sidebar-container.expanded .sidebar-menu-top .sidebar-logo {
+    gap: 7%;
+    height: 5vh;
+    width: 10vw;
+    padding-left: 6%
+}
+
+.sidebar-container.expanded .sidebar-menu-top ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden
+}
+
+.sidebar-container.expanded .sidebar-menu-top ul li {
+    justify-content: space-between;
+    gap: 3%;
+    width: 100%;
+    font-size: 1.2vh;
+    transition: width .3s ease-in-out;
+    gap: 7.5%;
+    justify-content: flex-start;
+    padding: 0 6%
+}
+
+.sidebar-container.expanded .sidebar-menu-top ul li .slider-case {
+    display: flex;
+    align-items: center;
+    gap: .7vh
+}
+
+.sidebar-container.expanded .sidebar-menu-top ul li .arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .6vh
+}
+
+.sidebar-container.expanded .sidebar-menu-top ul li .arrow svg {
+    height: 1.5vh;
+    width: 1.5vh
+}
+
+.sidebar-container.expanded .sidebar-menu-top ul li:hover,
+.sidebar-container.expanded .sidebar-menu-top ul li.selected {
+    width: 105%;
+    width: 100%
+}
+
+.sidebar-container.expanded .sidebar-menu-bottom ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    width: 100%;
+    align-items: flex-end
+}
+
+.sidebar-container.expanded .sidebar-menu-bottom ul li {
+    justify-content: flex-start;
+    gap: 3%;
+    width: 100%;
+    padding: 0 0 0 6%;
+    font-size: 1.2vh;
+    transition: width .3s ease-in-out;
+    gap: 7.5%
+}
+
+.basket-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 5vh;
+    width: 100%;
+    border-radius: .5vh;
+    margin-bottom: 3%;
+    font-size: 1.3vh;
+    font-weight: 300;
+    background: var(--black2-40);
+    width: 90%;
+    padding: 3%;
+    min-height: 4.5vh
+}
+
+.basket-container .basket-title {
+    display: flex;
+    align-items: center
+}
+
+.basket-container .basket-title img {
+    width: 2vw
+}
+
+.basket-container .basket-title .basket-name {
+    margin-right: 3%
+}
+
+.basket-container .basket-title .info {
+    display: flex;
+    flex-direction: column
+}
+
+.basket-container .basket-title .info .basket-info {
+    display: flex;
+    align-items: center;
+    gap: .5vh
+}
+
+.basket-container .basket-details {
+    display: flex;
+    align-items: center;
+    gap: .5vh;
+    gap: 0vh
+}
+
+.basket-container .basket-details .basket-quantity {
+    display: flex;
+    color: var(--white-70);
+    font-size: 1.2vh
+}
+
+.basket-container .basket-details .basketItem-quantity {
+    display: flex;
+    justify-content: center;
+    min-width: 1.8vh
+}
+
+.basket-container .basket-details .basket-quantity-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0000;
+    width: 2.5vh;
+    height: 2.5vh;
+    border-radius: .3vh;
+    color: var(--white-70);
+    font-size: 1.2vh;
+    color: #fff;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    font-size: 1.4vh;
+    background-color: var(--black2-40);
+    width: 1.8vh;
+    height: 1.8vh;
+    margin: 0 .6vh
+}
+
+.basket-container .basket-price {
+    display: flex;
+    font-size: 1.2vh;
+    font-weight: 500;
+    min-width: 1.8vw;
+    color: var(--green2)
+}
+
+.basket-container .basket-remove-btn {
+    background-color: #0000;
+    color: #fff;
+    border: none;
+    width: 2.5vh;
+    height: 2.5vh;
+    font-size: 1.2vh;
+    border-radius: .3vh;
+    cursor: pointer;
+    margin-left: .3vh
+}
+
+.basket-container .basket-remove-btn:hover {
+    transform: rotate(180deg);
+    transition: transform .3s ease;
+    width: 2vh;
+    height: 2vh
+}
+
+.shopcard-container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 13.5vh;
+    width: 13.5vh;
+    border-radius: .5vh;
+    cursor: pointer;
+    transition-property: border, background;
+    transition-duration: .2s;
+    background: var(--black2-40);
+    border: solid .1vw rgba(0, 0, 0, 0);
+    padding-bottom: 4%
+}
+
+.shopcard-container:hover {
+    border: solid .1vw var(--white-50)
+}
+
+.shopcard-container .shopcard-header {
+    position: absolute;
+    top: .7vh;
+    right: .7vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .3vh .7vh;
+    font-size: 1.15vh;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 3%;
+    position: relative;
+    justify-content: flex-end;
+    width: 100%;
+    padding: 0 .2vh;
+    font-size: 1.3vh;
+    color: var(--green2);
+    top: 0
+}
+
+.shopcard-container img {
+    width: 50%
+}
+
+.shopcard-container .shopcard-footer {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1vh;
+    padding: .4vh 0;
+    font-weight: 300;
+    width: 98%;
+    border-radius: 0 0 .5vh .5vh;
+    background: var(--black2-40);
+    bottom: 0;
+    width: 100%
+}
+
+.shop-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    color: var(--white);
+    position: absolute
+}
+
+.shop-container ::-webkit-scrollbar {
+    height: .8vh;
+    width: .62vh
+}
+
+.shop-container ::-webkit-scrollbar-thumb {
+    background-color: var(--global-main-color);
+    border-radius: 3px
+}
+
+.shop-container ::-webkit-scrollbar-track {
+    background-color: var(--black2-40)
+}
+
+.shop-container .shop-dashboard {
+    display: flex;
+    height: 80%;
+    width: 80vw;
+    padding: 2%;
+    width: 142vh
+}
+
+.shop-container .shop-dashboard .shop-contain {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    background: var(--black2-40);
+    border-radius: 0 .5vh .5vh 0;
+    padding: 3%
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header {
+    display: flex;
+    height: 8%;
+    width: 87.3%;
+    width: 100%
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left {
+    display: flex;
+    gap: 5%;
+    width: 60%;
+    align-items: center
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left .title {
+    font-size: 2.13vh;
+    font-weight: 600
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left .filters {
+    display: flex;
+    gap: .89vh
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left .filters .shop-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5%;
+    height: 4vh;
+    width: 12vh;
+    border-radius: .3vh;
+    font-size: 1.3vh;
+    font-weight: 300;
+    line-height: 0;
+    border: solid 1px rgba(0, 0, 0, 0);
+    cursor: pointer;
+    width: 9.78vh;
+    height: 3.8vh;
+    font-size: 1.4vh
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left .filters .shop-filter:hover {
+    transition: all .3s ease
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left .filters .shop-filter.sell {
+    background: var(--red-dark)
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left .filters .shop-filter.sell:hover {
+    background: var(--red-40)
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left .filters .shop-filter.sell.selected {
+    background: var(--red)
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left .filters .shop-filter.buy {
+    background: var(--green-dark)
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left .filters .shop-filter.buy:hover {
+    background: var(--green-40)
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left .filters .shop-filter.buy.selected {
+    background: var(--green)
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left .filters .shop-filter label {
+    cursor: pointer
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-left .filters .shop-filter img {
+    height: 45%;
+    height: 50%
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right {
+    display: flex;
+    justify-content: flex-end;
+    gap: 3%;
+    width: 40%;
+    align-items: center
+}
+
+.search-bar {
+    height: 3.2vh;
+    color: var(--white);
+    background-color: var(--black2-40);
+    border-radius: .18vh;
+    border: .09vh solid rgba(0, 0, 0, 0);
+    padding: 0 .92vh;
+    margin: 0;
+    font-size: 1.12vh
+}
+
+.search-bar:focus {
+    border: .09vh solid var(--white);
+    outline: none
+}
+
+.search-bar::-webkit-input-placeholder {
+    font-family: var(--font-family), sans-serif;
+    color: var(--white)
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .search-bar,
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .select-menu {
+    height: 3.8vh
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .select-menu {
+    position: relative;
+    text-align: center;
+    color: var(--white);
+    height: 3.8vh
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .select-menu .select {
+    background-color: var(--black2-40);
+    cursor: pointer;
+    border-radius: .18vh;
+    height: 100%;
+    padding-left: .89vh;
+    padding-right: 2.13vh;
+    display: flex;
+    align-items: center;
+    border-bottom: rgba(0, 0, 0, 0) .09vh solid;
+    width: 16vh;
+    font-size: 1.42vh
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .select-menu .select:focus {
+    border: none;
+    outline: none
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .select-menu .select.active {
+    border-bottom: var(--black2-40) .09vh solid;
+    border-radius: 0;
+    border-top-left-radius: .18vh;
+    border-top-right-radius: .18vh
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .select-menu .select.active .select-arrow {
+    transform: rotate(180deg)
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .select-menu .select .select-arrow {
+    position: absolute;
+    transform: rotate(90deg);
+    transition: transform .3s ease;
+    right: 5%
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .select-menu .select .select-arrow svg {
+    width: 1.5vh;
+    height: 1.5vh
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .select-menu .options {
+    background-color: var(--black2-40);
+    border-bottom-left-radius: .18vh;
+    border-bottom-right-radius: .18vh;
+    position: absolute;
+    z-index: 5;
+    width: 100%;
+    text-align: left;
+    overflow-y: auto;
+    display: none
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .select-menu .options.open {
+    display: block
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .select-menu .options .option {
+    padding: .18vh .92vh;
+    cursor: pointer;
+    font-size: 1.3vh
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-header .shop-right .select-menu .options .option:hover {
+    background-color: var(--global-main-color)
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 90%;
+    gap: 2%
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content .shop-content-left {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 1%;
+    width: 80%;
+    overflow: auto;
+    width: 70%
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content .shop-content-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5%;
+    width: 33%;
+    width: 28%;
+    gap: 3%;
+    align-items: flex-end
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content .shop-content-right .shop-content-right-basket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    background: var(--black2-40);
+    width: 100%;
+    border-radius: .3vh;
+    overflow: hidden;
+    z-index: 1;
+    height: 100%
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content .shop-content-right .shop-content-right-basket .shop-content-right-items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-height: 100%;
+    width: 100%;
+    overflow: auto;
+    margin-top: 5%;
+    height: 100%
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content .shop-content-right .shop-content-right-basket .shop-content-right-buy {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 4.5vh;
+    gap: 3%;
+    font-size: 1.2vh;
+    font-weight: 300;
+    background: var(--global-main-color);
+    height: 5vh
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content .shop-content-right .shop-content-right-basket .shop-content-right-buy img {
+    height: 40%;
+    height: 50%
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content .shop-content-right .shop-content-right-paymentmethod {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10%;
+    width: 100%;
+    height: 15%;
+    transition: all .3s ease;
+    animation-name: slide-down;
+    animation-duration: .5s;
+    animation-fill-mode: forwards;
+    opacity: 1
+}
+
+@keyframes slide-down {
+    0% {
+        transform: translateY(-80%)
+    }
+
+    to {
+        transform: translateY(0)
+    }
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content .shop-content-right .shop-content-right-paymentmethod .shop-content-button {
+    cursor: pointer;
+    height: 4.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3%;
+    background: var(--black2-40);
+    width: 100%;
+    height: 4vh;
+    border-radius: 2%;
+    font-size: 1.2vh;
+    font-weight: 300;
+    border: none;
+    position: relative;
+    overflow: hidden;
+    transition: .3s;
+    z-index: 1;
+    color: var(--white)
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content .shop-content-right .shop-content-right-paymentmethod .shop-content-button:before {
+    content: "";
+    width: 0;
+    height: 1500%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: var(--green);
+    transition: .5s ease;
+    display: block;
+    z-index: -1
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content .shop-content-right .shop-content-right-paymentmethod .shop-content-button img {
+    height: 40%;
+    height: 50%
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content .shop-content-right .shop-content-right-paymentmethod .shop-content-button:hover:before {
+    width: 105%
+}
+
+.shop-container .shop-dashboard .shop-contain .shop-content .shop-content-right .shop-content-right-paymentmethod .shop-content-button label {
+    cursor: pointer
+}

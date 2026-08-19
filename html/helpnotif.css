@@ -1,0 +1,92 @@
+#help-notif {
+    display: none;
+}
+
+#help-notif.visible {
+    display: inline-block;
+}
+
+.help-notification__je7W {
+    position: absolute;
+    top: 2.59vh;
+    left: 2.59vh;
+    display: inline-block;
+    padding: .7vh 1.2vh;
+    border-radius: .4vh;
+    background: #000000b8;
+    pointer-events: none;
+    z-index: 1000;
+    max-width: 50vh;
+    line-height: 3vh;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+
+.help-notification__je7W span {
+    font-size: 1.6vh;
+    color: #ffffffeb;
+    white-space: pre-wrap;
+    font-weight: 400;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .8);
+    vertical-align: middle;
+}
+
+.help-notification-key__2rRS {
+    height: 3.1vh;
+    width: auto;
+    object-fit: contain;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0 .2vh;
+}
+
+.help-notification__je7W .ui-key {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    margin: 0 .25vh;
+    line-height: 1;
+    font-family: 'Segoe UI', Arial, sans-serif;
+    box-sizing: border-box;
+}
+.help-notification__je7W .ui-key-cap {
+    min-width: 2.4vh;
+    height: 2.4vh;
+    padding: 0 .55vh;
+    background: #f3f3f3;
+    color: #111;
+    border: 1px solid #00000033;
+    border-radius: .35vh;
+    font-size: 1.35vh;
+    font-weight: 700;
+    box-shadow: 0 .15vh 0 #0000004d, 0 .25vh .5vh #00000080;
+    text-shadow: none;
+}
+.help-notification__je7W .ui-key-wide {
+    padding: 0 .8vh;
+    font-size: 1.2vh;
+    letter-spacing: .03em;
+}
+.help-notification__je7W .ui-key-svg {
+    width: 2.9vh;
+    height: 2.9vh;
+    color: #fff;
+}
+.help-notification__je7W .ui-key-svg svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.help-notification__je7W .ui-key-mouse {
+    width: 2.4vh;
+    height: 3vh;
+}
+.help-notification__je7W .ui-key-text {
+    color: #ffffffeb;
+    font-size: 1.5vh;
+}
+
+.help-notification__je7W .ui-key { display: inline-block; vertical-align: middle; margin: 0 .15vh; line-height: 1; }
+.help-notification__je7W .ui-key-img { height: 2.8vh; width: auto; object-fit: contain; }
+.help-notification__je7W .ui-key-mouse { height: 2.8vh; }
+.help-notification__je7W .ui-key-text { padding: .15vh .55vh; background: #ffffffe6; color: #111; border-radius: .35vh; font-size: 1.2vh; font-weight: 700; font-family: 'Segoe UI', Arial, sans-serif; }

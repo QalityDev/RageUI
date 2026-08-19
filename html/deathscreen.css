@@ -1,0 +1,184 @@
+.deathscreen-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    color: var(--white);
+    background-color: var(--black2-50);
+    animation: ds-containerIn .4s;
+    font-family: 'Poppins', sans-serif;
+    z-index: 999;
+}
+
+@keyframes ds-containerIn {
+    0%   { opacity: 0 }
+    100% { opacity: 1 }
+}
+
+.deathscreen-container.minimized .main {
+    top: 88%;
+}
+
+.deathscreen-container.minimized .main .header h1,
+.deathscreen-container.minimized .main .header p,
+.deathscreen-container.minimized .main .calls {
+    display: none;
+}
+
+.deathscreen-container.minimized:has(.detailsmed.active) .main {
+    top: 84%;
+}
+
+.deathscreen-container .main {
+    transition: top .5s ease-in-out;
+    animation: ds-mainIn .9s;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5vh;
+}
+
+@keyframes ds-mainIn {
+    0%   { opacity: 0; transform: translate(-50%, -75%) }
+    100% { opacity: 1; transform: translate(-50%, -50%) }
+}
+
+.deathscreen-container .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.deathscreen-container .header h1 {
+    font-size: 4vh;
+    font-style: italic;
+    margin: 0;
+}
+
+.deathscreen-container .header p {
+    font-size: 1.4vh;
+    font-weight: 300;
+    color: var(--white-50);
+    margin: 0;
+}
+
+.deathscreen-container .header img {
+    height: 7.5vh;
+    animation: ds-floatAnimation 2.8s infinite ease-in-out;
+    margin-bottom: .5vh;
+}
+
+@keyframes ds-floatAnimation {
+    0%   { transform: translateY(0) }
+    40%  { transform: translateY(-6px) }
+    100% { transform: translateY(0) }
+}
+
+.deathscreen-container .timer {
+    display: flex;
+    align-items: center;
+    gap: .6vh;
+}
+
+.deathscreen-container .calls {
+    display: flex;
+    align-items: center;
+    gap: 1.5vh;
+}
+
+.deathscreen-container .btn {
+    display: flex;
+    align-items: center;
+    gap: .5vh;
+    font-size: 1.4vh;
+}
+
+.deathscreen-container .btn .keyboard {
+    background: var(--black2-60);
+    padding: .8vh 1.5vh;
+    border-radius: .2vh;
+}
+
+.deathscreen-container .btn .ds-details {
+    background: var(--black2-30);
+    padding: .8vh 1.7vh;
+    border-radius: .2vh;
+}
+
+.deathscreen-container .btn.disable {
+    opacity: .5;
+}
+
+.deathscreen-container .detailsmed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--global-main-color-dark-50);
+    border: solid .1vh var(--global-main-color);
+    font-style: italic;
+    padding: .8vh 2.5vh;
+    border-radius: .2vh;
+    font-size: 1.4vh;
+    margin-top: -1vh;
+    opacity: 0;
+    transform: translateY(-1vh);
+    transition: opacity .4s, transform .4s;
+    max-width: 700px;
+}
+
+.deathscreen-container .detailsmed span {
+    white-space: pre-wrap;
+    word-break: break-word;
+    text-align: center;
+}
+
+@keyframes ds-detailMessageIn {
+    0%   { opacity: 0; transform: translateY(-10vh) }
+    100% { opacity: 1; transform: translateY(0) }
+}
+
+.deathscreen-container .detailsmed.active {
+    animation: ds-detailMessageIn .5s;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.deathscreen-container .ds-spacer {
+    height: 6.5vh;
+    width: 2.5vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6vh;
+}
+
+.deathscreen-container .ds-digit {
+    height: 6.5vh;
+    width: 5vh;
+    overflow: hidden;
+    position: relative;
+    background: var(--black2-40);
+}
+
+.deathscreen-container .ds-digit span {
+    position: absolute;
+    height: 6.5vh;
+    width: 5vh;
+    top: calc(6.5vh * var(--index));
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5vh;
+    transition: top .5s ease-in-out;
+}

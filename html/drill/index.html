@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+	<div id="background"></div>
+	<div id="flash"></div>
+
+	<div id="start" class="view">
+		<div id="start-text">Starting...</div>
+	</div>
+
+	<div id="done" class="view">
+		<div id="done-text">OUVERT !</div>
+	</div>
+
+	<div id="main" class="view">
+		<div id="upper-text">
+			FORAGE<br />EN COURS
+		</div>
+		<div id="progress" class="violet">
+			<div id="progress-text"></div>
+			<div id="progress-front" class="violet"></div>
+		</div>
+		<div id="lower-text">TEMPS RESTANT<br /><span style="font-style: normal;">N/A SECONDES</span></div>
+	</div>
+	<div id="overheat" class="view">
+		<svg width="20rem" height="20rem" viewBox="0 0 290 268" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path
+				d="M219.599 267.366H70.3354C57.9792 267.45 45.823 264.245 35.1151 258.079C24.4071 251.912 15.5333 243.007 9.40476 232.277C3.24637 221.771 0 209.813 0 197.635C0 185.457 3.24637 173.499 9.40476 162.993L84.3707 34.7819C90.5534 24.1968 99.4009 15.4159 110.032 9.3135C120.664 3.21107 132.709 0 144.967 0C157.226 0 169.27 3.21107 179.902 9.3135C190.533 15.4159 199.381 24.1968 205.564 34.7819L280.307 162.993C286.465 173.499 289.711 185.457 289.711 197.635C289.711 209.813 286.465 221.771 280.307 232.277C274.197 242.974 265.358 251.858 254.693 258.022C244.027 264.187 231.917 267.411 219.599 267.366ZM144.967 22.3062C136.605 22.2313 128.373 24.3781 121.112 28.5271C113.851 32.6761 107.822 38.6786 103.641 45.921L28.8981 174.243C24.7156 181.349 22.5101 189.445 22.5101 197.691C22.5101 205.936 24.7156 214.032 28.8981 221.138C33.0365 228.467 39.0625 234.554 46.3496 238.766C53.6368 242.977 61.9191 245.16 70.3354 245.087H219.599C228.034 245.18 236.339 243.007 243.648 238.794C250.956 234.582 257 228.484 261.148 221.138C265.33 214.032 267.536 205.936 267.536 197.691C267.536 189.445 265.33 181.349 261.148 174.243L186.293 45.921C182.112 38.6786 176.083 32.6761 168.822 28.5271C161.562 24.3781 153.329 22.2313 144.967 22.3062Z"
+				fill="white" />
+			<path
+				d="M144.558 211.552C132.74 211.552 121.407 206.857 113.051 198.501C104.694 190.145 100 178.811 100 166.994C100.088 154.966 104.251 143.323 111.808 133.966C120.617 122.56 125.589 108.659 126.011 94.2535C126.062 93.3457 126.335 92.4644 126.806 91.6865C127.277 90.9086 127.931 90.2577 128.711 89.7908C129.491 89.3238 130.373 89.0549 131.281 89.0076C132.189 88.9602 133.095 89.1359 133.92 89.5192C143.265 93.5417 151.364 99.9907 157.377 108.198C163.39 116.404 167.098 126.071 168.118 136.193C169.404 134.456 170.505 132.59 171.404 130.624C171.748 129.673 172.344 128.833 173.129 128.195C173.914 127.557 174.858 127.145 175.859 127.003C176.866 126.865 177.891 127.005 178.823 127.408C179.756 127.81 180.561 128.46 181.151 129.287C181.986 130.29 189.115 140.983 189.115 166.994C189.183 172.864 188.076 178.688 185.86 184.125C183.645 189.561 180.365 194.5 176.214 198.651C172.063 202.802 167.125 206.081 161.688 208.297C156.252 210.512 150.428 211.619 144.558 211.552ZM136.259 103.499C134.4 116.847 129.167 129.499 121.054 140.259C114.724 147.737 111.216 157.197 111.139 166.994C111.139 175.857 114.66 184.357 120.927 190.624C127.195 196.891 135.695 200.412 144.558 200.412C148.973 200.511 153.363 199.714 157.462 198.07C161.562 196.425 165.285 193.968 168.408 190.844C171.531 187.721 173.989 183.998 175.634 179.899C177.278 175.799 178.075 171.41 177.976 166.994C178.092 159.494 177.268 152.01 175.525 144.715C172.599 148.403 169.101 151.6 165.166 154.184C164.261 154.769 163.205 155.079 162.128 155.076C161.05 155.073 159.997 154.758 159.095 154.168C158.192 153.579 157.481 152.74 157.046 151.754C156.611 150.768 156.471 149.678 156.644 148.614C158.276 139.911 157.197 130.918 153.551 122.849C149.905 114.78 143.869 108.026 136.259 103.499Z"
+				fill="white" />
+		</svg>
+
+		<div id="overheat-text">SURCHAUFFE !</div>
+	</div>
+	<div id="broken" class="view">
+		<svg width="25rem" height="15rem" viewBox="0 0 557 233" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M371.351 59.8725L395.093 78.5034L379.383 37.8396L371.351 59.8725Z" fill="white" />
+			<path d="M372.233 136.412L347.151 174.431L368.315 168.717L372.233 136.412Z" fill="white" />
+			<path d="M414.739 167.128L390.772 136.623L398.356 199.594L412.961 219.792L414.739 167.128Z" fill="white" />
+			<path d="M469.197 54.3402L415.468 85.4932L446.815 44.2609L469.197 54.3402Z" fill="white" />
+			<path
+				d="M0 207.867V0H20.789V207.867H0ZM228.648 62.3592V145.507H187.078V62.3592H228.648ZM166.289 17.8815V189.977L124.718 203.837V4.02996L166.289 17.8893V17.8815ZM103.929 20.7812V187.07H41.5702V20.789H103.929V20.7812ZM249.437 124.711H372.589L392.925 83.1404H249.437V124.711Z"
+				fill="white" />
+			<path
+				d="M0 207.867V0H20.789V207.867H0ZM228.648 62.3592V145.507H187.078V62.3592H228.648ZM166.289 17.8815V189.977L124.718 203.837V4.02996L166.289 17.8893V17.8815ZM103.929 20.7812V187.07H41.5702V20.789H103.929V20.7812ZM249.437 124.711H372.589L392.925 83.1404H249.437V124.711Z"
+				fill="white" />
+			<path
+				d="M538.435 153.177L430.511 98.7929L393.643 126.764L519.728 190.3C529.982 195.467 542.482 191.344 547.649 181.091C552.816 170.837 548.689 158.344 538.435 153.177Z"
+				fill="white" />
+			<path
+				d="M538.435 153.177L430.511 98.7929L393.643 126.764L519.728 190.3C529.982 195.467 542.482 191.344 547.649 181.091C552.816 170.837 548.689 158.344 538.435 153.177Z"
+				fill="white" />
+		</svg>
+
+		<div id="broken-text">FORET CASSÉ !</div>
+	</div>
+</body>
+<script>
+	var main = document.getElementById("main");
+	var background = document.getElementById("background");
+	var upperText = document.getElementById("upper-text");
+	var lowerText = document.getElementById("lower-text");
+	var progress = document.getElementById("progress");
+	var progressText = document.getElementById("progress-text");
+	var progressFront = document.getElementById("progress-front");
+
+	let backgroundColor = {
+		violet: "var(--degrade-violet)",
+		orange: "var(--degrade-orange)",
+		rouge: "var(--degrade-rouge)",
+		blanc: "var(--degrade-blanc)",
+		vert: "var(--degrade-vert)"
+	}
+
+	var start = document.getElementById("start");
+	var startText = document.getElementById("start-text");
+
+	var overheat = document.getElementById("overheat");
+	var overheatText = document.getElementById("overheat-text");
+
+	var broken = document.getElementById("broken");
+	var brokenText = document.getElementById("broken-text");
+
+	var done = document.getElementById("done");
+	var doneText = document.getElementById("done-text");
+
+	var view = 'start';
+
+	function changeView(newView) {
+		const views = {
+			main,
+			overheat,
+			broken,
+			start,
+			done
+		}
+		for (let key in views) {
+			if (key === newView) {
+				views[key].style.display = "flex";
+			} else {
+				views[key].style.display = "none";
+			}
+		}
+		view = newView;
+	}
+
+	window.addEventListener('message', function (event) {
+		let { action, data } = event.data;
+		if (action === 'SetColor') {
+			let color = data.color;
+			if (color !== 'violet' && color !== 'orange' && color !== 'rouge' && color !== 'blanc' && color !== 'vert') {
+				color = 'blanc';
+			}
+			background.style.background = backgroundColor[color];
+			progress.classList.remove('violet', 'orange', 'rouge', 'blanc', 'vert');
+			progress.classList.add(color);
+			progressFront.classList.remove('violet', 'orange', 'rouge', 'blanc', 'vert');
+			progressFront.classList.add(color);
+		}
+		if (action === 'SetText') {
+			upperText.innerHTML = data.upperText ?? upperText.innerHTML;
+			lowerText.innerHTML = data.lowerText ?? lowerText.innerHTML;
+		}
+		if (action === 'SetProgress') {
+			let percentage = typeof data.percentage === 'number' ? data.percentage : 0;
+			progressText.innerHTML = percentage.toFixed(0) + '%';
+			progressFront.style.width = data.percentage + '%';
+		}
+		if (action === 'SetFlash')
+			document.getElementById('flash').style.display = data.flash ? 'block' : 'none';
+		if (action === 'SetView') {
+			changeView(data.view);
+		}
+		if (action === 'SetDamageText') {
+			if (view === 'overheat') {
+				overheatText.innerHTML = data.text;
+			} else if (view === 'broken') {
+				brokenText.innerHTML = data.text;
+			}
+		}
+	});
+</script>
+<style>
+	@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@900&family=Space+Mono&display=swap');
+
+	body {
+		background: black;
+
+		overflow: hidden;
+		margin: 0;
+	}
+
+	:root {
+		font-size: 1.5vw;
+	}
+
+	@media (orientation: landscape) {
+		:root {
+			font-size: 1.5vh;
+		}
+	}
+
+	:root {
+		--degrade-violet: linear-gradient(rgba(2, 2, 2, 0.36) 0%, rgba(70, 82, 35, 0.31) 100%);
+		--degrade-orange: linear-gradient(rgba(2, 2, 2, 0.36) 0%, rgba(171, 96, 27, 0.31) 100%);
+		--degrade-rouge: linear-gradient(rgba(2, 2, 2, 0.36) 0%, rgba(171, 27, 27, 0.31) 100%);
+		--degrade-blanc: linear-gradient(rgba(2, 2, 2, 0.36) 0%, rgba(255, 255, 255, 0.31) 100%);
+		--degrade-vert: linear-gradient(rgba(2, 2, 2, 0.36) 0%, rgba(27, 171, 113, 0.75) 100%);
+
+		font-family: 'Poppins', sans-serif;
+		font-style: italic;
+		text-align: center;
+		color: white;
+
+	}
+
+	.view {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		display: none;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
+
+	#background {
+		z-index: -1;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: var(--degrade-blanc);
+		width: 100%;
+		height: 100%;
+		flex-shrink: 0;
+	}
+
+	@keyframes flash {
+		0% {
+			opacity: 1;
+		}
+
+		50% {
+			opacity: 0;
+		}
+
+		100% {
+			opacity: 1;
+		}
+	}
+
+	#flash {
+		display: none;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(rgba(2, 2, 2, 0) 0%, rgba(240, 40, 40, 0.5) 70%);
+		animation: flash 0.5s linear infinite;
+	}
+
+</style>
+<style>
+	#main {
+		width: 100vw;
+		height: 100vh;
+		gap: 4rem;
+	}
+
+	#upper-text {
+		line-height: 80%;
+		font-size: 8rem;
+	}
+
+	#lower-text {
+		line-height: 80%;
+		font-size: 6.25rem;
+	}
+
+	#progress {
+		position: relative;
+		height: 8.125rem;
+		width: 70%;
+		transition: width, background, border 0.5s ease-in-out;
+	}
+
+	#progress.violet {
+		border: 2px solid #465223;
+		background: rgba(70, 82, 35, 0.50);
+	}
+
+	#progress.orange {
+		border: 2px solid #AB601B;
+		background: rgba(171, 96, 27, 0.50);
+	}
+
+	#progress.rouge {
+		border: 2px solid #AB1B1B;
+		background: rgba(171, 27, 27, 0.50);
+	}
+
+	#progress.vert {
+		border: 2px solid #1bab71;
+		background: rgba(27, 171, 113, 0.50);
+	}
+
+	#progress-text {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		font-style: normal;
+		font-size: 6.25rem;
+	}
+
+	#progress-front {
+		background: var(--degrade-rouge);
+		height: 100%;
+		width: 0%;
+		transition: all 0.5s ease-in-out;
+	}
+
+	#progress-front.violet {
+		background: #465223;
+	}
+
+	#progress-front.orange {
+		background: #AB601B;
+	}
+
+	#progress-front.rouge {
+		background: #AB1B1B;
+	}
+
+	#progress-front.vert {
+		background: #1bab71;
+	}
+
+</style>
+
+<style>
+	#overheat-text {
+		font-size: 8rem;
+	}
+
+</style>
+
+<style>
+	#broken-text {
+		font-size: 8rem;
+	}
+
+</style>
+
+<style>
+	#start-text {
+		font-size: 8rem;
+	}
+
+	#start {
+		display: flex;
+		text-transform: uppercase;
+	}
+
+</style>
+
+<style>
+	#done-text {
+		font-size: 8rem;
+	}
+
+</style>
+
+</html>

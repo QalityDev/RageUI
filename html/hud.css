@@ -1,0 +1,83 @@
+.hudContainer {
+    position: fixed;
+    height: 8px;
+    width: 14vw;     
+    left: 2.5vh;        
+    top: auto;
+    bottom: 0vh;        
+    transition: top .4s cubic-bezier(.4, 0, .2, 1),
+                left .4s cubic-bezier(.4, 0, .2, 1),
+                width .4s cubic-bezier(.4, 0, .2, 1),
+                opacity 0s ease 0s;
+    display: flex;
+    border-radius: 4px;
+    overflow: hidden;
+    z-index: 999;
+    pointer-events: none;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, .55));
+}
+.hudContainer .hudElement {
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    flex: 1 1 50%;
+    border: none;
+    float: none;
+}
+.hudContainer .hudElement .hudBar {
+    float: none;
+}
+.hudContainer .hudElement.health {
+    background-color: #2c56317c;
+}
+.hudContainer .hudElement.armor {
+    background-color: #3e78b17f;
+}
+.hudContainer .hudElement.red {
+    background-color: #630106a4;
+}
+.hudContainer .hudElement .hudBar {
+    transition: width 1s cubic-bezier(0, 0, .2, 1);
+    width: 0;
+    height: 100%;
+    z-index: 1;
+}
+@keyframes flashing-health {
+    0%   { background-color: #920c0f; }
+    100% { background-color: #630106; }
+}
+.hudContainer .hudElement .hudBar.flashing {
+    animation: flashing-health .8s infinite;
+}
+.hudContainer .hudElement .hudBar.health {
+    background-color: #528e4d;
+}
+.hudContainer .hudElement .hudBar.armor {
+    background-color: #3e78b1;
+}
+
+.waypoint-indicator {
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4px;
+    z-index: 15;
+    pointer-events: none;
+    transform: translate(-100%, -100%);
+}
+.waypoint-indicator .wp-arrow {
+    width: 16px;
+    height: 16px;
+    color: #fff;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .8));
+    transition: transform .15s ease-out;
+}
+.waypoint-indicator .wp-distance {
+    font-family: Roboto, 'Segoe UI', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    color: #fff;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .8);
+    line-height: 1;
+}

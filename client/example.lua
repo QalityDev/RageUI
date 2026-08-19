@@ -1,104 +1,74 @@
 -- ====================================================================
--- Exemple de Menu RageUI Standalone pour FiveM (ESX / OX Compatible)
--- Tapez /rageui ou /menu en jeu pour tester le menu
+-- Exemple de Menu RageUI Officiel FlashBack Mihara
+-- Tapez /admin ou /rageui pour ouvrir le menu
 -- ====================================================================
 
-local mainMenu = RageUI.CreateMenu("RageUI LocalHost", "MENU DE TEST ESX / OX")
-local subMenuPlayer = RageUI.CreateSubMenu(mainMenu, "Option Joueur", "PARAMÈTRES DU JOUEUR")
-local subMenuVehicles = RageUI.CreateSubMenu(mainMenu, "Véhicules", "GESTION DU VÉHICULE")
+local soundEnabled = true
+local disablePeds = false
+local currentHour = 13
 
--- Variables d'état pour les tests
-local checkboxTest = false
-local listIndex = 1
-local listItems = { "Option A", "Option B", "Option C", "Option D" }
+-- Initialisation des menus avec la syntaxe de FlashBack Mihara
+RageUI.CreateMenu("rpAdmin", "Admin", "GESTION DU MONDE")
+RageUI.CreateSubMenu("AdminWorldMenu", "rpAdmin", "Admin", "GESTION DU MONDE")
 
--- Boucle de rendu du menu
 CreateThread(function()
     while true do
         Wait(0)
 
-        -- Menu Principal
-        if RageUI.IsVisible(mainMenu, function()
-            RageUI.Separator("~b~--- Menu Démonstration Standalone ---~s~")
+        -- Menu racine Admin
+        RageUI.IsVisible("rpAdmin", function()
+            RageUI.Button("Gestion du monde", "Accéder aux paramètres globaux du monde", {}, true, {}, "AdminWorldMenu")
+        end)
 
-            RageUI.Button("Options Joueur", "Accéder aux sous-options du personnage", {}, true, {}, subMenuPlayer)
-            RageUI.Button("Options Véhicule", "Accéder aux actions sur le véhicule", {}, true, {}, subMenuVehicles)
+        -- Sous-Menu "Gestion du Monde" (Identique à l'image du serveur)
+        RageUI.IsVisible("AdminWorldMenu", function()
+            -- Boutons désactivés (Affichent le cadenas 🔒 comme dans l'image 2)
+            RageUI.Button("Météo", "Gérer la météo globale", {}, false, {})
+            RageUI.Button("Braquages", "Gestion des braquages", {}, false, {})
 
-            RageUI.Line()
-
-            checkboxTest = RageUI.Checkbox("Mode Invicible / Mod-Test", "Activer ou désactiver l'invincibilité de test", checkboxTest, {}, {
-                onChecked = function()
-                    SetEntityInvincible(PlayerPedId(), true)
-                    TriggerEvent("chat:addMessage", { args = { "^2[RageUI]", "Invincibilité activée !" } })
-                end,
-                onUnChecked = function()
-                    SetEntityInvincible(PlayerPedId(), false)
-                    TriggerEvent("chat:addMessage", { args = { "^1[RageUI]", "Invincibilité désactivée !" } })
+            -- Liste d'heures (< 13h >)
+            RageUI.List("Heure", { "1h", "2h", "3h", "4h", "5h", "6h", "7h", "8h", "9h", "10h", "11h", "12h", "13h", "14h", "15h", "16h", "17h", "18h", "19h", "20h", "21h", "22h", "23h", "24h" }, currentHour, "Changer l'heure du monde", {}, true, {
+                onListChange = function(Index, Item)
+                    currentHour = Index
                 end
             })
 
-            listIndex = RageUI.List("Choix de sélection", listItems, listIndex, "Sélectionnez un élément dans la liste", {}, true, {
-                onListChange = function(index, item)
-                    print("[RageUI] Changement liste index : " .. tostring(index) .. " -> " .. tostring(item))
-                end,
-                onSelected = function(index, item)
-                    TriggerEvent("chat:addMessage", { args = { "^3[RageUI]", "Option sélectionnée : " .. tostring(item) } })
-                end
-            })
-        end) then
-        end
+            RageUI.Button("Blackout", "Activer ou désactiver l'électricité de la ville", {}, true, {})
 
-        -- Sous-Menu Joueur
-        if RageUI.IsVisible(subMenuPlayer, function()
-            RageUI.Separator("~g~--- Santé & Armure ---~s~")
-
-            RageUI.Button("Soigner le joueur", "Rétablir la vie à 100%", {}, true, {
+            -- Checkboxes
+            RageUI.Checkbox("Son par les joueurs", "Activer ou désactiver la perception sonore", soundEnabled, {}, {
                 onSelected = function()
-                    SetEntityHealth(PlayerPedId(), 200)
-                    TriggerEvent("chat:addMessage", { args = { "^2[RageUI]", "Vie rétablie !" } })
+                    soundEnabled = not soundEnabled
                 end
             })
 
-            RageUI.Button("Donner du gilet par-balles", "Rétablir le gilet par-balles à 100%", {}, true, {
+            RageUI.Checkbox("Désactiver le spawn des PNJ", "Prends un peu de temps avant d'être actif.", disablePeds, {}, {
                 onSelected = function()
-                    SetPedArmour(PlayerPedId(), 100)
-                    TriggerEvent("chat:addMessage", { args = { "^2[RageUI]", "Gilet par-balles max !" } })
+                    disablePeds = not disablePeds
                 end
             })
-        end) then
-        end
 
-        -- Sous-Menu Véhicules
-        if RageUI.IsVisible(subMenuVehicles, function()
-            RageUI.Separator("~y~--- Actions Véhicules ---~s~")
-
-            RageUI.Button("Réparer le véhicule", "Réparer le moteur et la carrosserie", {}, true, {
-                onSelected = function()
-                    local ped = PlayerPedId()
-                    local veh = GetVehiclePedIsIn(ped, false)
-                    if veh ~= 0 then
-                        SetVehicleFixed(veh)
-                        SetVehicleDirtLevel(veh, 0.0)
-                        TriggerEvent("chat:addMessage", { args = { "^2[RageUI]", "Véhicule réparé !" } })
-                    else
-                        TriggerEvent("chat:addMessage", { args = { "^1[RageUI]", "Vous n'êtes pas dans un véhicule !" } })
-                    end
-                end
-            })
-        end) then
-        end
+            RageUI.Button("Désactiver les peds offline", "Gestion des PNJ déconnectés", {}, true, {})
+            RageUI.Button("Fouiller les joueurs hors ligne", "Inspecter les inventaires hors ligne", {}, true, {})
+            RageUI.Button("Rendre les PNJ fous", "Activer le comportement agressif PNJ", {}, true, {})
+            RageUI.Button("Riot", "Déclencher l'émeute PNJ", {}, true, {})
+            RageUI.Button("Activer l'alarme de la Prison", "Déclencher la sirène pénitencière", {}, true, {})
+            RageUI.Button("Activer l'alarme de Cayo Perico", "Déclencher l'alarme de l'île", {}, true, {})
+        end)
     end
 end)
 
--- Commande pour ouvrir/fermer le menu
+-- Commandes d'ouverture
+RegisterCommand("admin", function()
+    local menu = RageUI.Menus["rpAdmin"]
+    if menu then
+        RageUI.Visible(menu, not RageUI.Visible(menu))
+    end
+end, false)
+
 RegisterCommand("rageui", function()
-    RageUI.Visible(mainMenu, not RageUI.Visible(mainMenu))
+    local menu = RageUI.Menus["rpAdmin"]
+    if menu then
+        RageUI.Visible(menu, not RageUI.Visible(menu))
+    end
 end, false)
-
-RegisterCommand("menu", function()
-    RageUI.Visible(mainMenu, not RageUI.Visible(mainMenu))
-end, false)
-
--- Suggestion de commande dans le chat
-TriggerEvent("chat:addSuggestion", "/rageui", "Ouvrir le menu RageUI de démonstration")
-TriggerEvent("chat:addSuggestion", "/menu", "Ouvrir le menu RageUI de démonstration")

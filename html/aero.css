@@ -1,0 +1,30 @@
+
+#fb-aero{position:fixed;top:2.6vh;right:1.4vw;display:none;align-items:center;gap:1.1vw;
+  z-index:40;pointer-events:none;font-family:'Poppins','Segoe UI',sans-serif}
+#fb-aero.on{display:flex}
+.aero-circle{position:relative;width:13.5vh;height:13.5vh;border-radius:50%;overflow:hidden;
+  border:.38vh solid rgba(125,125,125,.9);box-shadow:0 .3vh 1.2vh rgba(0,0,0,.35);flex-shrink:0}
+.aero-horizon{position:absolute;left:-50%;top:-50%;width:200%;height:200%;
+  transition:transform .12s linear;will-change:transform}
+.aero-sky{position:absolute;top:0;left:0;width:100%;height:50%;
+  background:linear-gradient(180deg,#3d87d6 0%,#4f9ce2 100%)}
+.aero-ground{position:absolute;bottom:0;left:0;width:100%;height:50%;
+  background:linear-gradient(180deg,#7a5233 0%,#5c3c24 100%)}
+.aero-line{position:absolute;top:calc(50% - .22vh);left:0;width:100%;height:.44vh;background:#fff}
+.aero-bank{position:absolute;top:.5vh;left:50%;transform:translateX(-50%);width:0;height:0;
+  border-left:.6vh solid transparent;border-right:.6vh solid transparent;
+  border-top:1vh solid #e8c722;filter:drop-shadow(0 0 2px rgba(0,0,0,.55));z-index:3}
+.aero-plane{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  display:flex;align-items:center;gap:.4vh;z-index:3;
+  filter:drop-shadow(0 0 2px rgba(0,0,0,.45))}
+.aero-plane .tick{width:.34vh;height:1.15vh;background:#e8c722;border-radius:.1vh}
+.aero-plane .bar{width:3vh;height:.34vh;background:#e8c722;border-radius:.1vh}
+.aero-plane .dot{width:.85vh;height:.85vh;border-radius:50%;background:#e8c722}
+.aero-panel{background:rgba(22,22,22,.45);border-radius:.9vh;padding:1.2vh 1.6vh;
+  display:flex;flex-direction:column;gap:.9vh;min-width:8.5vw;backdrop-filter:blur(2px)}
+.aero-panel .row{display:flex;align-items:baseline;gap:.7vh}
+.aero-panel .lbl{font-size:1.5vh;letter-spacing:.14em;color:rgba(255,255,255,.55);
+  text-transform:uppercase;margin-right:auto;font-weight:500}
+.aero-panel .val{font-size:3.1vh;font-weight:700;color:#fff;line-height:1;
+  font-variant-numeric:tabular-nums}
+.aero-panel .unit{font-size:1.5vh;color:rgba(255,255,255,.6)}

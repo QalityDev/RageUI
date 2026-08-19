@@ -1,0 +1,136 @@
+.sdcard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    pointer-events: all;
+}
+
+.sdcard .sdcard-image {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    z-index: -1;
+    object-fit: contain;
+    background-color: #000;
+}
+
+.sdcard .sdcard-top {
+    display: flex;
+    justify-content: flex-end;
+    height: 33.3%;
+    width: 100%;
+}
+
+.sdcard .sdcard-middle {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 33.3%;
+}
+
+.sdcard .sdcard-bottom {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 100%;
+    height: 33.3%;
+}
+
+.sdcard .sdcard-bottom .sdcard-counter:hover {
+    opacity: unset;
+}
+
+.sdcard .sdcard-bottom .sdcard-actions {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+}
+
+.sdcard .sdcard-bottom .sdcard-actions .sdcard-btn {
+    margin: 2.5vh 0.5vh;
+    transition: 0.2s ease;
+    transition-property: background-color, opacity;
+}
+
+.sdcard .sdcard-bottom .sdcard-actions .sdcard-copy:hover {
+    background-color: rgba(40, 200, 120, 0.6);
+}
+
+.sdcard .sdcard-bottom .sdcard-actions .sdcard-remove:hover {
+    background-color: rgba(255, 60, 60, 0.6);
+}
+
+.sdcard .sdcard-bottom .sdcard-actions .sdcard-export svg {
+    height: 1.3vh;
+    width: 1.3vh;
+}
+
+.sdcard .sdcard-bottom .sdcard-actions .sdcard-export:hover {
+    background-color: rgba(50, 130, 240, 0.6);
+}
+
+.sdcard .sdcard-btn {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2.5vh;
+    height: 1.5vh;
+    width: 2.5vh;
+    padding: 0.8vh 2vh;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-color: rgba(14, 14, 14, 0.4);
+    border-bottom: 0.1vh solid hsla(0, 0%, 100%, 0.1);
+    border-top: 0.1vh solid hsla(0, 0%, 100%, 0.1);
+    border-radius: 10vh;
+    color: #f5f5f5;
+    cursor: pointer;
+    transition: scale 0.6s, opacity 0.6s;
+}
+
+.sdcard .sdcard-btn:hover {
+    opacity: 0.85;
+    scale: 1.05;
+}
+
+.sdcard .sdcard-btn:active {
+    scale: 0.95;
+}
+
+.sdcard .sdcard-btn svg {
+    height: 1.4vh;
+    width: 1.4vh;
+}
+
+.sdcard .sdcard-counter {
+    all: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 2.5vh;
+    padding: 0.8vh 2vh;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    background-color: rgba(14, 14, 14, 0.4);
+    border-bottom: 0.1vh solid hsla(0, 0%, 100%, 0.1);
+    border-top: 0.1vh solid hsla(0, 0%, 100%, 0.1);
+    border-radius: 10vh;
+    color: #f5f5f5;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 1.4vh;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+}

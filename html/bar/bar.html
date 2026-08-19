@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Rozha+One&display=swap" rel="stylesheet">
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			font-family: Arial, sans-serif;
+			overflow: hidden;
+		}
+
+		* {
+			font-family: "Rozha One", serif;
+			font-weight: 400;
+			font-style: normal;
+		}
+
+		.main {
+			width: 512px;
+			height: 1024px;
+		}
+
+		.title h1 {
+			text-align: center;
+			font-size: 2em;
+			color: white;
+			text-shadow: -3px 3px 0px #000;
+		}
+
+		.header {
+			color: white;
+			text-align: center;
+			width: 100%;
+		}
+
+		svg {
+			width: 50%;
+		}
+
+		#fg {
+			transition: width 1s linear;
+		}
+
+		#timer {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100%;
+			color: black;
+			font-size: 125%;
+		}
+
+		#recipes {
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-wrap: wrap;
+		}
+
+		@keyframes movement {
+			0% { transform: translate(0, 0); }
+			50% { transform: translate(var(--random), var(--random)); }
+			100% { transform: translate(0, 0); }
+		}
+
+		:root { --step-size: 100px; }
+
+		.step {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width: 100%;
+			height: var(--step-size);
+			transition: all 0.5s;
+			animation: movement 5s infinite ease-in-out;
+		}
+
+		.step .icon {
+			width: var(--step-size);
+			height: 100%;
+			position: relative;
+		}
+
+		.step .icon img,
+		.step .icon .color,
+		.step .icon .text {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			mask-size: cover;
+			-webkit-mask-size: cover;
+		}
+
+		.step .icon .text {
+			top: unset;
+			bottom: 20%;
+			display: flex;
+			justify-content: center;
+			align-items: flex-end;
+			color: white;
+			font-size: 150%;
+			font-weight: bold;
+			text-shadow: -1px 1px 0px #000;
+		}
+
+		.step { opacity: 0.2; }
+		.step:first-child { transition: all 0.2s; opacity: 1; }
+		.done:first-child { opacity: 0; }
+		.done:nth-child(2) { opacity: 1; }
+		.step:first-child .drink_shake.shake-pending img,
+		.step:first-child .drink_shake.shake-pending .color {
+			filter: grayscale(1) brightness(0.5);
+			transition: filter 0.2s;
+		}
+		.step:first-child .drink_shake.shake-good img,
+		.step:first-child .drink_shake.shake-good .color {
+			filter: drop-shadow(0 0 6px #80ff80) drop-shadow(0 0 12px #80ff80);
+			transition: filter 0.2s;
+		}
+		.step:first-child .drink_shake.shake-over img,
+		.step:first-child .drink_shake.shake-over .color {
+			filter: drop-shadow(0 0 6px #ff4040) drop-shadow(0 0 12px #ff4040) hue-rotate(-30deg);
+			transition: filter 0.2s;
+		}
+
+		@keyframes goUp {
+			0% { transform: translateY(0); }
+			100% { transform: translateY(calc(var(--step-size) * -1)); }
+		}
+
+		.done { animation: goUp 0.5s; }
+	</style>
+	<script defer>
+		let ourTimer = 0;
+
+		function createRecipe(drinkName, time, steps, maxTime) {
+			const title = document.querySelector('.title h1');
+			const fg = document.getElementById('fg');
+			const timer = document.getElementById('timer');
+			ourTimer = time;
+			const interval = setInterval(() => {
+				ourTimer--;
+				timer.innerHTML = ourTimer.toString().padStart(2, '0');
+				fg.style.width = `${Math.min((ourTimer / maxTime) * 108, 108)}`;
+				if (ourTimer <= 0) clearInterval(interval);
+			}, 1000);
+
+			const recipes = document.getElementById('recipes');
+			recipes.innerHTML = '';
+			title.innerHTML = drinkName;
+
+			steps.forEach((step) => {
+				const stepDiv = document.createElement('div');
+				stepDiv.style.setProperty('--random', ((Math.random() * 20) - 10).toFixed(2) + 'px');
+				stepDiv.classList.add('step');
+				step.images.forEach((image) => {
+					const icon = document.createElement('div');
+					icon.classList.add(image.ref);
+					icon.classList.add('icon');
+					stepDiv.appendChild(icon);
+
+					const img = document.createElement('img');
+					img.src = `icons/${image.ref}.png`;
+					if (image.color) {
+						const color = document.createElement('div');
+						color.classList.add('color');
+						color.style.backgroundColor = image.color;
+						color.style.webkitMaskImage = `url(icons/${image.ref}_color.png)`;
+						color.style.maskImage = `url(icons/${image.ref}_color.png)`;
+						icon.appendChild(color);
+					}
+					if (image.text) {
+						const text = document.createElement('div');
+						text.classList.add('text');
+						text.innerHTML = image.text;
+						icon.appendChild(text);
+					}
+					icon.appendChild(img);
+				});
+				recipes.appendChild(stepDiv);
+			});
+		}
+
+		window.addEventListener('message', function (event) {
+			const { action, drinkName, time, maxTime, steps, text } = event.data;
+			if (action === 'SetRecipe') {
+				createRecipe(drinkName, time, steps, maxTime);
+			} else if (action === 'SetCurrentText') {
+				const el = document.querySelector('.step:not(.done) .text');
+				if (el) el.innerHTML = text;
+			} else if (action === 'DoneWithTask') {
+				const recipes = document.getElementById('recipes');
+				recipes.childNodes.forEach(child => child.classList && child.classList.add('done'));
+				setTimeout(() => {
+					recipes.childNodes.forEach(child => child.classList && child.classList.remove('done'));
+					if (recipes.firstElementChild) recipes.removeChild(recipes.firstElementChild);
+				}, 500);
+				ourTimer += time;
+				if (ourTimer > maxTime) ourTimer = maxTime;
+			} else if (action === 'SetShakeState') {
+				const icon = document.querySelector('.step:first-child .drink_shake');
+				if (icon) {
+					icon.classList.remove('shake-pending', 'shake-good', 'shake-over');
+					if (event.data.state && event.data.state !== 'none') {
+						icon.classList.add('shake-' + event.data.state);
+					}
+				}
+			}
+		});
+
+		document.addEventListener('DOMContentLoaded', () => {
+			if (window.invokeNative) {
+				fetch(`https://ui_lib/drinkDuiReady`, {
+					method: "post",
+					headers: { "Content-Type": "application/json; charset=UTF-8" },
+					body: JSON.stringify({}),
+				});
+			} else {
+				createRecipe('Potion de vie', 60, [
+					{ images: [{ ref: 'burn', color: 'red', text: '1' }] },
+					{ images: [{ ref: 'liquid', color: 'green' }] },
+				], 70);
+			}
+		});
+	</script>
+</head>
+
+<body>
+	<div class="main">
+		<div class="title">
+			<h1></h1>
+		</div>
+		<div class="header">
+			<svg viewBox="0 0 203 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+				<g id="svg-main">
+					<g id="Union">
+						<mask id="path-1-inside-1_7101_73" fill="white">
+							<path fill-rule="evenodd" clip-rule="evenodd"
+								d="M37.3244 35C33.8663 40.978 27.4028 45 20 45C8.9543 45 0 36.0457 0 25C0 13.9543 8.9543 5 20 5C27.4028 5 33.8663 9.02199 37.3244 15H45V35H37.3244Z" />
+						</mask>
+						<path fill-rule="evenodd" clip-rule="evenodd"
+							d="M37.3244 35C33.8663 40.978 27.4028 45 20 45C8.9543 45 0 36.0457 0 25C0 13.9543 8.9543 5 20 5C27.4028 5 33.8663 9.02199 37.3244 15H45V35H37.3244Z"
+							fill="#80C273" />
+						<path
+							d="M37.3244 35V33H36.1708L35.5931 33.9985L37.3244 35ZM37.3244 15L35.5931 16.0015L36.1708 17H37.3244V15ZM45 15H47V13H45V15ZM45 35V37H47V35H45ZM35.5931 33.9985C32.4778 39.384 26.66 43 20 43V47C28.1456 47 35.2547 42.572 39.0556 36.0015L35.5931 33.9985ZM20 43C10.0589 43 2 34.9411 2 25H-2C-2 37.1503 7.84974 47 20 47V43ZM2 25C2 15.0589 10.0589 7 20 7V3C7.84974 3 -2 12.8497 -2 25H2ZM20 7C26.66 7 32.4778 10.616 35.5931 16.0015L39.0556 13.9985C35.2547 7.42795 28.1456 3 20 3V7ZM37.3244 17H45V13H37.3244V17ZM43 15V35H47V15H43ZM45 33H37.3244V37H45V33Z"
+							fill="black" mask="url(#path-1-inside-1_7101_73)" />
+					</g>
+					<g id="bar">
+						<rect id="bg" x="43" y="17" width="108" height="16" fill="#DF554A" />
+						<rect id="fg" x="43" y="15" width="0" height="20" fill="#80C273" />
+						<rect id="border" x="44" y="16" width="106" height="18" stroke="black" stroke-width="2" />
+						<g id="bars">
+							<g id="bottom-bar">
+								<g id="Group 3">
+									<line id="Line 8" x1="48.5" y1="33.125" x2="48.5" y2="27" stroke="black" />
+									<line id="Line 9" x1="54.5" y1="33.125" x2="54.5" y2="28.75" stroke="black" />
+									<line id="Line 10" x1="60.5" y1="33.125" x2="60.5" y2="27" stroke="black" />
+								</g>
+								<g id="Group 4">
+									<line id="Line 8_2" x1="69.5" y1="33.125" x2="69.5" y2="27" stroke="black" />
+									<line id="Line 9_2" x1="75.5" y1="33.125" x2="75.5" y2="28.75" stroke="black" />
+									<line id="Line 10_2" x1="81.5" y1="33.125" x2="81.5" y2="27" stroke="black" />
+								</g>
+								<g id="Group 5">
+									<line id="Line 8_3" x1="90.5" y1="33.125" x2="90.5" y2="27" stroke="black" />
+									<line id="Line 9_3" x1="96.5" y1="33.125" x2="96.5" y2="28.75" stroke="black" />
+									<line id="Line 10_3" x1="102.5" y1="33.125" x2="102.5" y2="27" stroke="black" />
+								</g>
+								<g id="Group 6">
+									<line id="Line 8_4" x1="111.5" y1="34" x2="111.5" y2="27.875" stroke="black" />
+									<line id="Line 9_4" x1="117.5" y1="34" x2="117.5" y2="29.625" stroke="black" />
+									<line id="Line 10_4" x1="123.5" y1="34" x2="123.5" y2="27.875" stroke="black" />
+								</g>
+								<g id="Group 7">
+									<line id="Line 8_5" x1="132.5" y1="34" x2="132.5" y2="27.875" stroke="black" />
+									<line id="Line 9_5" x1="138.5" y1="34" x2="138.5" y2="29.625" stroke="black" />
+									<line id="Line 10_5" x1="144.5" y1="34" x2="144.5" y2="27.875" stroke="black" />
+								</g>
+							</g>
+							<g id="middle bar">
+								<line id="Line 1" x1="65.5" y1="16.8533" x2="65.5" y2="33.1469" stroke="white" />
+								<line id="Line 2" x1="65.5" y1="16.8533" x2="65.5" y2="33.1469" stroke="black" />
+								<line id="Line 4" x1="107.5" y1="33.1469" x2="107.5" y2="16.8533" stroke="black" />
+								<line id="Line 5" x1="128.5" y1="33.1469" x2="128.5" y2="16.8533" stroke="black" />
+								<line id="Line 7" x1="86.5" y1="33.1469" x2="86.5" y2="16.8533" stroke="black" />
+							</g>
+							<g id="top-bar">
+								<g id="Group 8">
+									<line id="Line 8_6" x1="144.5" y1="16" x2="144.5" y2="23" stroke="black" />
+									<line id="Line 9_6" x1="138.5" y1="16" x2="138.5" y2="21" stroke="black" />
+									<line id="Line 10_6" x1="132.5" y1="16" x2="132.5" y2="23" stroke="black" />
+								</g>
+								<g id="Group 9">
+									<line id="Line 8_7" x1="123.5" y1="16" x2="123.5" y2="23" stroke="black" />
+									<line id="Line 9_7" x1="117.5" y1="16" x2="117.5" y2="21" stroke="black" />
+									<line id="Line 10_7" x1="111.5" y1="16" x2="111.5" y2="23" stroke="black" />
+								</g>
+								<g id="Group 10">
+									<line id="Line 8_8" x1="102.5" y1="16" x2="102.5" y2="23" stroke="black" />
+									<line id="Line 9_8" x1="96.5" y1="16" x2="96.5" y2="21" stroke="black" />
+									<line id="Line 10_8" x1="90.5" y1="16" x2="90.5" y2="23" stroke="black" />
+								</g>
+								<g id="Group 11">
+									<line id="Line 8_9" x1="81.5" y1="16" x2="81.5" y2="23" stroke="black" />
+									<line id="Line 9_9" x1="75.5" y1="16" x2="75.5" y2="21" stroke="black" />
+									<line id="Line 10_9" x1="69.5" y1="16" x2="69.5" y2="23" stroke="black" />
+								</g>
+								<g id="Group 12">
+									<line id="Line 8_10" x1="60.5" y1="16" x2="60.5" y2="23" stroke="black" />
+									<line id="Line 9_10" x1="54.5" y1="16" x2="54.5" y2="21" stroke="black" />
+									<line id="Line 10_10" x1="48.5" y1="16" x2="48.5" y2="23" stroke="black" />
+								</g>
+							</g>
+						</g>
+					</g>
+					<g id="text-bubble">
+						<rect id="Rectangle 4" x="150" y="16" width="9" height="18" fill="#DF554A" stroke="black" stroke-width="2" />
+						<circle id="Ellipse 2" cx="178" cy="25" r="24" fill="#D9D9D9" stroke="black" stroke-width="2" />
+						<foreignObject id="foreignObject1" x="155" y="2" width="46" height="46">
+							<div class="timer" id="timer" xmlns="http://www.w3.org/1999/xhtml"></div>
+						</foreignObject>
+					</g>
+				</g>
+			</svg>
+		</div>
+		<div id="recipes"></div>
+	</div>
+</body>
+
+</html>
