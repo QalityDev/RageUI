@@ -5,7 +5,10 @@ L0_1 = type
 L1_1 = pairs
 L2_1 = math
 L2_1 = L2_1.max
-L3_1 = SendNUIMessage
+local function TriggerNUI(data)
+    exports['RageUI']:SendNUI(data)
+end
+L3_1 = TriggerNUI
 L4_1 = RageUI
 function L5_1(A0_2, A1_2)
   local L2_2, L3_2
