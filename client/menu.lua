@@ -521,6 +521,27 @@ function L6_1(A0_2, A1_2)
   L2_2.LastControl = false
 end
 L5_1.Visible = L6_1
+
+function RageUI.IsVisible(menuRef, callback)
+    local menu = type(menuRef) == "string" and RageUI.Menus[menuRef] or menuRef
+    if menu and menu.Open then
+        RageUI.CurrentMenu = menu
+        if callback and type(callback) == "function" then
+            callback()
+        end
+        return true
+    end
+    return false
+end
+
+local origVisible = RageUI.Visible
+function RageUI.Visible(menuRef, state)
+    local menu = type(menuRef) == "string" and RageUI.Menus[menuRef] or menuRef
+    if menu then
+        return origVisible(menu, state)
+    end
+    return false
+end
 L5_1 = RageUI
 function L6_1()
   local L0_2, L1_2, L2_2, L3_2, L4_2

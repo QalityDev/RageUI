@@ -10,6 +10,8 @@ ui_page 'html/index.html'
 
 client_scripts {
     'client/menu.lua',
+    'client/items.lua',
+    'client/controls.lua',
     'client/example.lua'
 }
 
