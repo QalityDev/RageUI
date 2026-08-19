@@ -60,15 +60,9 @@ end)
 
 -- Commandes d'ouverture
 RegisterCommand("admin", function()
-    local menu = RageUI.Menus["rpAdmin"]
-    if menu then
-        RageUI.Visible(menu, not RageUI.Visible(menu))
-    end
+    RageUI.Visible("rpAdmin", not RageUI.Visible("rpAdmin"))
 end, false)
 
 RegisterCommand("rageui", function()
-    local menu = RageUI.Menus["rpAdmin"]
-    if menu then
-        RageUI.Visible(menu, not RageUI.Visible(menu))
-    end
+    RageUI.Visible("rpAdmin", not RageUI.Visible("rpAdmin"))
 end, false)

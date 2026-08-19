@@ -12,6 +12,7 @@ client_scripts {
     'client/menu.lua',
     'client/items.lua',
     'client/controls.lua',
+    'client/main.lua',
     'client/example.lua'
 }
 
