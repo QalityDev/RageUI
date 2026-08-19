@@ -538,6 +538,17 @@ local origVisible = RageUI.Visible
 function RageUI.Visible(menuRef, state)
     local menu = type(menuRef) == "string" and RageUI.Menus[menuRef] or menuRef
     if menu then
+        if state == true then
+            if RageUI.RenderedNui then
+                RageUI.RenderedNui.forceUpdate = true
+                RageUI.RenderedNui.changed = true
+                RageUI.RenderedNui.selectionOnly = false
+                RageUI.RenderedNui._selectedIndex = nil
+                RageUI.RenderedNui._title = nil
+                RageUI.RenderedNui._subtitle = nil
+                RageUI.RenderedNui._option = nil
+            end
+        end
         return origVisible(menu, state)
     end
     return false
